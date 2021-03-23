@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import MaterialIcons from 'react-native-vector-icons'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchUser } from '../redux/actions/index.js'
 
+import MenuScreen from './main/Menu'
+
+const Drawer = createDrawerNavigator();
+
 export class Main extends Component {
     componentDidMount() {
-        this.props.fetchUser;
+        this.props.fetchUser();
     }
     render() {
-        const { currentUser } = this.props;
-        if(currentUser == undefined) {
-            return(
-                <View></View>
-            )
-        }
         return (
-            <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text>{currentUser} is logged in</Text>
-            </View>
+            <Drawer.Navigator initialRouteName="Menu">
+                <Drawer.Screen name="Menu" component={MenuScreen} />
+            </Drawer.Navigator>
         )
     }
 }
@@ -29,4 +29,4 @@ const mapStateToProps = (store) => ({
 })
 const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser}, dispatch)
 
-export default connect(null, mapDispatchProps)(Main)
+export default connect(mapStateToProps, mapDispatchProps)(Main)
