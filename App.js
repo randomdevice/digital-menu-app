@@ -1,40 +1,36 @@
-import 'dotenv/config';
-import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import 'dotenv/config'
+// import { StatusBar } from 'expo-status-bar'
+import React, { Component } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import * as firebase from 'firebase'
+import 'react-native-gesture-handler'
 
-import * as firebase from 'firebase';
-import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import LandingScreen from './components/auth/Landing'
+import RegisterScreen from './components/auth/Register'
+import LoginScreen from './components/auth/Login'
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env["API_KEY"],
+  apiKey: "AIzaSyBtqt8P4N1FoA6h_esTIE0yMlH36mzziAE",
   authDomain: "robo-ramsay.firebaseapp.com",
   projectId: "robo-ramsay",
   storageBucket: "robo-ramsay.appspot.com",
   messagingSenderId: "10917927337",
   appId: "1:10917927337:web:21011e48b660dce3dc0cb8",
   measurementId: "G-8ZDM888KSB"
-};
-
-if(firebase.apps.length === 0) {
-  firebase.initializeApp(firebaseConfig);
 }
 
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import LandingScreen from './components/auth/Landing';
-import RegisterScreen from './components/auth/Register';
+if(firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig)
+}
 
-const Stack = createStackNavigator();
-
-import React, { Component } from 'react'
+const Stack = createStackNavigator()
 
 export class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       loaded: false,
     }
@@ -49,7 +45,7 @@ export class App extends Component {
         })
       } else {
         this.setState({
-          loggedIn: false,
+          loggedIn: true,
           loaded: true
         })
       }
@@ -72,9 +68,10 @@ export class App extends Component {
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name="Register" component={RegisterScreen}></Stack.Screen>
+            <Stack.Screen name="Login" component={LoginScreen}/>
           </Stack.Navigator>
         </NavigationContainer>
-      );
+      )
     }
 
     return (
@@ -94,4 +91,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
