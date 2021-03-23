@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet,StatusBar, Image,Text, View,} from 'react-native';
 import {FAB} from 'react-native-paper';
 
-export const ItemScreen = ({navigation}) => {
+export default ItemScreen = ({navigation}) => {
 
   //replace hardcodeded value with database query
   const itemPicAddress = '../../assets/hamburger_item_pic.jpg';
