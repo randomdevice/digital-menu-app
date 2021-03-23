@@ -4,12 +4,17 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import * as firebase from 'firebase'
 import 'react-native-gesture-handler'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import rootReducer from './redux/reducers'
+import thunk from 'redux-thunk'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import LandingScreen from './components/auth/Landing'
-import RegisterScreen from './components/auth/Register'
-import LoginScreen from './components/auth/Login'
+import LandingScreen from './components/auth/Landing.js'
+import RegisterScreen from './components/auth/Register.js'
+import LoginScreen from './components/auth/Login.js'
+import MainScreen from './components/Main.js' 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -75,9 +80,11 @@ export class App extends Component {
     }
 
     return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text>User is logged in</Text>
-      </View>
+      <Provider store={store}>
+          <Stack.Navigator initialRouteName="Main">
+            <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }}></Stack.Screen>
+          </Stack.Navigator>
+      </Provider>
     )
   }
 }
