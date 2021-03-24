@@ -15,6 +15,7 @@ import LandingScreen from './src/auth/Landing'
 import RegisterScreen from './src/auth/Register'
 import LoginScreen from './src/auth/Login'
 import RoboRamsay from './src/RoboRamsay'
+import Settings from './src/screens/test/Settings'
 
 // configures and links firebase to app
 const firebaseConfig = {
@@ -89,6 +90,7 @@ export class App extends Component {
           <NavigationContainer>
               <Stack.Navigator initialRouteName="RoboRamsay">
                 <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
+                <Stack.Screen name="Settings" component={Settings}/>
               </Stack.Navigator>
           </NavigationContainer>
       </Provider>

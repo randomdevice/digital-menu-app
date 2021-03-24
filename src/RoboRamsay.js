@@ -13,6 +13,9 @@ import Checkout from './screens/test/Checkout'
 import Orders from './screens/test/Orders'
 
 const Tab = createBottomTabNavigator()
+const EmptyScreen = () => {
+    return null
+} 
 
 export class RoboRamsay extends Component {
     componentDidMount() {
@@ -20,7 +23,7 @@ export class RoboRamsay extends Component {
     }
     render() {
         return (
-            <Tab.Navigator>
+            <Tab.Navigator initialRouteName="Menu">
                 <Tab.Screen 
                     name="Menu" 
                     component={Menu} 
@@ -43,6 +46,20 @@ export class RoboRamsay extends Component {
                     options={{
                         tabBarIcon: () => (
                             <Icon name="local-dining"/>
+                        )
+                    }}/>
+                <Tab.Screen
+                    name="SettingTab" 
+                    component={EmptyScreen}
+                    listeners={({ navigation }) => ({
+                        tabPress: event => {
+                            event.preventDefault();
+                            navigation.navigate("Settings")
+                        }
+                    })}
+                    options={{
+                        tabBarIcon: () => (
+                            <Icon name="settings"/>
                         )
                     }}/>
             </Tab.Navigator>

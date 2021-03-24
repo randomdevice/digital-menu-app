@@ -16,7 +16,7 @@ function guestSignIn() {
 
 export default function Landing({ navigation }) {
     return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'bottom' }}>
             <Button
                 title="Register"
                 onPress={() => navigation.navigate("Register")} />
