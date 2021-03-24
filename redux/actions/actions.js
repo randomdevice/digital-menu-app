@@ -1,6 +1,7 @@
 import firebase from 'firebase'
-import { USER_STATE_CHANGE } from '../constants/index'
+import { USER_STATE_CHANGE } from '../constants/actionTypes'
 
+// Gets current user from firebase then dispatches action (obj) containing user data in snapshot
 export function fetchUser() {
     return((dispatch) => {
         firebase.firestore()

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StatusBar,StyleSheet,View,} from 'react-native';
+import {Text, StatusBar, StyleSheet, View} from 'react-native';
 
 export default ItemScreen = ({navigation}) => {
 

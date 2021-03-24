@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { StyleSheet,StatusBar, Text, View,SectionList } from 'react-native';
-import {ListItem,Avatar} from 'react-native-elements';
+import { ListItem, Avatar } from 'react-native-elements';
 import { FAB } from 'react-native-paper';
 
 

@@ -11,7 +11,7 @@ export class Login extends Component {
             password: ''
         }
 
-        this.onSignUp = this.onSignUp.bind(this)
+        this.onSignIn = this.onSignIn.bind(this)
     }
 
     onSignIn() {
