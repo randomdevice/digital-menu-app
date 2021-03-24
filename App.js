@@ -1,25 +1,14 @@
-import 'dotenv/config'
-// import { StatusBar } from 'expo-status-bar'
+import 'react-native-gesture-handler'
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import * as firebase from 'firebase'
-import 'react-native-gesture-handler'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import rootReducer from './redux/reducers'
-import thunk from 'redux-thunk'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import LandingScreen from './components/auth/Landing.js'
-import RegisterScreen from './components/auth/Register.js'
-import LoginScreen from './components/auth/Login.js'
-import MainScreen from './components/Main.js'
-import { MenuScreen } from "./src/screens/MenuScreen";
-import { ItemScreen } from './src/screens/ItemScreen';
+import LandingScreen from './src/auth/Landing'
+import RegisterScreen from './src/auth/Register'
+import LoginScreen from './src/auth/Login'
 
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBtqt8P4N1FoA6h_esTIE0yMlH36mzziAE",
   authDomain: "robo-ramsay.firebaseapp.com",
@@ -85,17 +74,10 @@ export class App extends Component {
       )
     }
 
-    // Page the user is directed to once logged in. Will load corrent pages from here.
-    return (
-      <Provider store={store}>
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName="Main">
-              <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }}></Stack.Screen>
-              <Stack.Screen name="MenuScreen" component={MenuScreen} />
-              <Stack.Screen name="ItemScreen" component={ItemScreen} />
-            </Stack.Navigator>
-          </NavigationContainer>
-      </Provider>
+    return(
+      <View style={{ flex: 1, justifyContent: 'center' }}>
+        <Text>Logged In</Text>
+      </View>
     )
   }
 }
