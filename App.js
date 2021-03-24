@@ -1,14 +1,22 @@
+// Component imports
 import 'react-native-gesture-handler'
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import * as firebase from 'firebase'
 
+// Redux imports
+import { Provider } from 'react-redux'
+import store from "./redux/store/store"
+
+// View/Navigation imports
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import LandingScreen from './src/auth/Landing'
 import RegisterScreen from './src/auth/Register'
 import LoginScreen from './src/auth/Login'
+import RoboRamsay from './src/RoboRamsay'
 
+// configures and links firebase to app
 const firebaseConfig = {
   apiKey: "AIzaSyBtqt8P4N1FoA6h_esTIE0yMlH36mzziAE",
   authDomain: "robo-ramsay.firebaseapp.com",
@@ -23,6 +31,7 @@ if(firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
 }
 
+// generate stack for page storage
 const Stack = createStackNavigator()
 
 export class App extends Component {
@@ -74,10 +83,15 @@ export class App extends Component {
       )
     }
 
+    // return app stored in RoboRamsay
     return(
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text>Logged In</Text>
-      </View>
+      <Provider store={store}>
+          <NavigationContainer>
+              <Stack.Navigator initialRouteName="RoboRamsay">
+                <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
+              </Stack.Navigator>
+          </NavigationContainer>
+      </Provider>
     )
   }
 }
