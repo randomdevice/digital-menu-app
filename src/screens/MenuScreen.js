@@ -65,10 +65,10 @@ const data = [
   
 ];
 
-export const MenuScreen = ({navigation}) => { 
+export default MenuScreen = ({navigation}) => { 
 
   const renderItem = useCallback(({ item }) => (
-    <ListItem containerStyle = {{marginHorizontal:16,marginBottom:'2%', paddingLeft: '3%',borderRadius:6,height:70,backgroundColor:'#c9e9ff'}}>
+    <ListItem onPress={() => navigation.navigate("ItemScreen")} containerStyle = {{marginHorizontal:16,marginBottom:'2%', paddingLeft: '3%',borderRadius:6,height:70,backgroundColor:'#c9e9ff'}}>
       
       <ListItem.Content style={{flex:0.3}}>
         <Avatar 
@@ -119,7 +119,7 @@ export const MenuScreen = ({navigation}) => {
       label="View Order"
       color= "white"
       icon={"cart-outline"}
-      onPress={() => navigation.navigate("ItemScreen")}
+      onPress={() => navigation.navigate("OrderScreen")}
     /> 
 
   </View>
