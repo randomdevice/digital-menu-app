@@ -8,8 +8,8 @@ import { fetchUser } from '../redux/actions/actions'
 // Tab Navigator import
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Icon } from 'react-native-elements'
-import MenuStack from './screens/test/navigation/MenuStack'
-import OrderStack from './screens/test/navigation/OrderStack'
+import MenuStack from './screens/navigation/MenuStack'
+import OrderStack from './screens/navigation/OrderStack'
 
 const Tab = createBottomTabNavigator()
 const EmptyScreen = () => {
