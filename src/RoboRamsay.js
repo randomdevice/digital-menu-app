@@ -8,8 +8,8 @@ import { fetchUser } from '../redux/actions/actions'
 // Tab Navigator import
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Icon } from 'react-native-elements'
-import Menu from './screens/test/Menu'
-import OrderDashboard from './screens/test/OrderDashboard'
+import MenuStack from './screens/test/navigation/MenuStack'
+import OrderStack from './screens/test/navigation/OrderStack'
 
 const Tab = createBottomTabNavigator()
 const EmptyScreen = () => {
@@ -22,25 +22,25 @@ export class RoboRamsay extends Component {
     }
     render() {
         return (
-            <Tab.Navigator initialRouteName="Menu">
+            <Tab.Navigator initialRouteName="MenuTab">
                 <Tab.Screen 
-                    name="Menu" 
-                    component={Menu} 
+                    name="MenuTab" 
+                    component={MenuStack} 
                     options={{
                         tabBarIcon: () => (
                             <Icon name="menu-book"/>
                         )
                     }}/>
                 <Tab.Screen 
-                    name="OrderDashboard" 
-                    component={OrderDashboard} 
+                    name="OrdersTab" 
+                    component={OrderStack} 
                     options={{
                         tabBarIcon: () => (
                             <Icon name="local-dining"/>
                         )
                     }}/>
                 <Tab.Screen
-                    name="SettingTab" 
+                    name="SettingsTab" 
                     component={EmptyScreen}
                     listeners={({ navigation }) => ({
                         tabPress: event => {
