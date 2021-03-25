@@ -1,5 +1,5 @@
 <Button
-        title="Press me"
+        title="Order"
         color="#f1942f"
         onPress={}
       />
