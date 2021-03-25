@@ -151,6 +151,11 @@ const styles = StyleSheet.create({
     backgroundColor:"#3fba3f"
   }
 });
+<Button
+title="Order"
+color="#f1942f"
+onPress={}
+/>
 
 
 
