@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 
-export class Checkout extends Component {
+export class OrderDashboard extends Component {
     render() {
         return (
             <View>
                 <Text>
-                    Checkout
+                    Order Page
                 </Text>
             </View>
         )
     }
 }
 
-export default Checkout
+export default OrderDashboard

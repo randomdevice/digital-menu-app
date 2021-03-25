@@ -9,8 +9,7 @@ import { fetchUser } from '../redux/actions/actions'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Icon } from 'react-native-elements'
 import Menu from './screens/test/Menu'
-import Checkout from './screens/test/Checkout'
-import Orders from './screens/test/Orders'
+import OrderDashboard from './screens/test/OrderDashboard'
 
 const Tab = createBottomTabNavigator()
 const EmptyScreen = () => {
@@ -33,16 +32,8 @@ export class RoboRamsay extends Component {
                         )
                     }}/>
                 <Tab.Screen 
-                    name="Checkout" 
-                    component={Checkout} 
-                    options={{
-                        tabBarIcon: () => (
-                            <Icon name="payments"/>
-                        )
-                    }}/>
-                <Tab.Screen 
-                    name="Orders" 
-                    component={Orders} 
+                    name="OrderDashboard" 
+                    component={OrderDashboard} 
                     options={{
                         tabBarIcon: () => (
                             <Icon name="local-dining"/>
