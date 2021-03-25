@@ -6,7 +6,7 @@ import * as firebase from 'firebase'
 
 // Redux imports
 import { Provider } from 'react-redux'
-import store from "./redux/store/store"
+import store from './redux/store/store'
 
 // View/Navigation imports
 import { NavigationContainer } from '@react-navigation/native'

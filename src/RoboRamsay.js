@@ -24,7 +24,7 @@ export class RoboRamsay extends Component {
         return (
             <Tab.Navigator initialRouteName="MenuTab">
                 <Tab.Screen 
-                    name="MenuTab" 
+                    name="MenuTab"
                     component={MenuStack} 
                     options={{
                         tabBarIcon: () => (
