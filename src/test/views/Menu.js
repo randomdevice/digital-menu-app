@@ -4,10 +4,10 @@ import { View, Text, StyleSheet, SafeAreaView, FlatList, StatusBar } from 'react
 // Redux store config imports
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updateMenu } from '../../../../redux/actions/actions'
+import { updateMenu } from '../../../redux/actions/actions'
 
 // Component imports
-import ItemCell from '../../../../components/test/menu/ItemCell'
+import ItemCell from '../../../components/test/menu/ItemCell'
 
 let DATA = [
     {
@@ -23,10 +23,6 @@ let DATA = [
         itemName: 'Third Item',
     },
 ];
-
-const renderItem = ({ item }) => {
-    <ItemCell title={item.title} />
-}
 
 export class Menu extends Component {
     componentDidMount() {
