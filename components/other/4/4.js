@@ -25,11 +25,11 @@ export default function orderComponent(){
 						<ListItem.Content>
 							<ListItem.Title>{orderedItem.itemName}</ListItem.Title>
 						</ListItem.Content>
-							<Text>               Price:</Text>
+							<Text>Price:</Text>
 						<ListItem.Content>
 							<ListItem.Title>{orderedItem.itemPrice}</ListItem.Title>
 						</ListItem.Content> 
-            <Text>        Qty:</Text>
+            <Text>Qty:</Text>
 						<ListItem.Content>
 						<ListItem.Title>{orderedItem.itemQty}</ListItem.Title>
             </ListItem.Content>
