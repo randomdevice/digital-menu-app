@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { View, StyleSheet, Button, Alert } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Button, Alert } from 'react-native';
 
 function onPressFunction(){
 	Alert.alert('Order has been Placed')
 }
 
 
+
 export default function ItemViewerOrderButton() {
   return (
+<SafeAreaView style={styles.container}>
 		<View>
 			<Button
 				title = "Order Item"
@@ -15,6 +17,7 @@ export default function ItemViewerOrderButton() {
 				onPress={onPressFunction}
 			/>
 		</View>
+  </SafeAreaView>
   );
 }
 
