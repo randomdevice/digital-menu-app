@@ -1,4 +1,3 @@
-//Used Expo as well as looked at work done in 12 for reference.
 import * as React from 'react';
 import { View, StyleSheet, Button, Alert } from 'react-native';
 
@@ -7,12 +6,12 @@ function onPressFunction(){
 }
 
 
-export default function DeleteOrderButton() {
+export default function ItemViewerOrderButton() {
   return (
-		<View style = {styles.container}>
-			<Button 
-				title = "Delete Order"
-				color="#E74020"
+		<View>
+			<Button
+				title = "Order Item"
+				color = "#000000"
 				onPress={onPressFunction}
 			/>
 		</View>
@@ -24,5 +23,16 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
     marginHorizontal:16
-  }
+  },
+  title:{
+    textAlign:'center',
+    marginVertical:8
+  },
+  fitToText:{
+    flexDirection:'row',
+    justifyContent:'space-between'
+  },
+  separator:{
+    marginVertical:8,
+  },
 })
