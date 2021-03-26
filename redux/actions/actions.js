@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { USER_STATE_CHANGE, UPDATE_MENU } from '../constants/actionTypes'
+import { USER_STATE_CHANGE, UPDATE_MENU, USER_ORDERS_STATE_CHANGE } from '../constants/actionTypes'
 
 // Gets current user from firebase then dispatches action (obj) containing user data in snapshot.
 function fetchUser() {
@@ -18,6 +18,29 @@ function fetchUser() {
     })
 }
 
+function fetchUserOrders() {
+    return((dispatch) => {
+        firebase.firestore()
+            .collection("orders")
+            .doc(firebase.auth().currentUser.uid)
+            .collection("userOrders")
+            .orderBy("creation", "asc")
+            .get()
+            .then((snapshot) => {
+                if(snapshot.exists) {
+                    let orders = snapshot.docs.map(doc => {
+                        const data = doc.data()
+                        const id = doc.id
+                        return { id, data }
+                    })
+                    dispatch({type: USER_ORDERS_STATE_CHANGE, orders })
+                } else {
+                    console.log('user does not exist.')
+                }
+            })
+    })
+}
+
 // Finds items collection and dispatches item names.
 function updateMenu() {
     return((dispatch) => {
@@ -26,18 +49,12 @@ function updateMenu() {
             .get()
             .then((snapshot) => {
                 if(snapshot.exists) {
-                    let itemList = []
-                    snapshot.forEach((doc) => {
-                        itemList = [
-                            ...itemList,
-                            {
-                              id: doc.id,
-                              itemName: doc.data().itemName
-                            }
-                        ]
+                    let items = snapshot.map(doc => {
+                        const data = doc.data()
+                        const id = doc.id
+                        return { id, data }
                     })
-
-                    dispatch({type: UPDATE_MENU, items: itemList })
+                    dispatch({type: UPDATE_MENU, items })
                 } else {
                     console.log('no items are available.')
                 }
@@ -45,4 +62,4 @@ function updateMenu() {
     })
 }
 
-export { fetchUser, updateMenu }
+export { fetchUser, fetchUserOrders , updateMenu }

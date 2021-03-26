@@ -6,7 +6,12 @@ function guestSignIn() {
     firebase.auth().signInAnonymously()
     .then(() => {
         firebase.auth().onAuthStateChanged((user) => {
-            console.log(`Signed in.. is anonymous? ${user.isAnonymous}`)
+            firebase.firestore().collection("users")
+                .doc(firebase.auth().currentUser.uid)
+                .set({
+                    anonimity: user.isAnonymous,
+                    user: currentUser.uid
+                })
         })
     })
     .catch((error) => {
