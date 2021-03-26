@@ -5,7 +5,7 @@ import {FAB} from 'react-native-paper';
 export default ItemScreen = ({navigation}) => {
 
   //replace hardcodeded value with database query
-  const itemPicAddress = '../../assets/hamburger_item_pic.jpg';
+  const itemPicAddress = '../../../assets/hamburger_item_pic.jpg';
   const itemDesc = 'Cheeseburger with mozarella cheese, dill pickle, on sesame bun. Comes with fries or chips.'
   return(
 
