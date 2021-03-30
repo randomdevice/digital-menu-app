@@ -10,7 +10,7 @@ function guestSignIn() {
                 .doc(firebase.auth().currentUser.uid)
                 .set({
                     anonimity: user.isAnonymous,
-                    user: currentUser.uid
+                    user: firebase.auth().currentUser.uid
                 })
         })
     })

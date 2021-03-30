@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, FlatList, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, Button, SafeAreaView, FlatList, StatusBar } from 'react-native'
 
 export class Menu extends Component {
+    constructor({ navigation }) {
+        super({ navigation })
+        this.navigation = navigation
+    }
 
     render() {
         return (

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import {View, Text} from 'react-native'
 
 export class OrderDashboard extends Component {
     render() {
         return (
-            <div>
-                
-            </div>
+            <View>
+                <Text>
+                    This is the Order Page
+                </Text>
+            </View>
         )
     }
 }
