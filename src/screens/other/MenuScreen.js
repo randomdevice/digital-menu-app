@@ -82,7 +82,7 @@ const MenuScreen = ({navigation}) => {
 
   const renderSectionHeader = useCallback(({ section: { title } }) => (
     
-    <View style = {{backgroundColor:'#ffe9a1', marginBottom:'2%',paddingLeft:'3%'}}><Text style={styles.header}>{title}</Text></View>
+    <View style = {{backgroundColor:'#3483eb', marginBottom:'2%',paddingLeft:'3%'}}><Text style={styles.header}>{title}</Text></View>
     
   ),[]); 
 
@@ -103,14 +103,12 @@ const MenuScreen = ({navigation}) => {
       label="View Order"
       color= "white"
       icon={"cart-outline"}
-      onPress={() => navigation.navigate("OrderScreen")}
+      onPress={() => navigation.navigate("Order Viewer")}
     /> 
 
   </View>
   );
 }
-
-export default MenuScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -138,6 +136,6 @@ const styles = StyleSheet.create({
   }
 });
 
-
+export default MenuScreen;
 
 

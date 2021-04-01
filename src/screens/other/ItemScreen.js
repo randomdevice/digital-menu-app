@@ -1,21 +1,19 @@
-// Components
 import React from 'react';
 import { StyleSheet,StatusBar, Image,Text, View,} from 'react-native';
 import {FAB} from 'react-native-paper';
-
-// Assets
 import itempic from '../../../assets/hamburger_item_pic.jpg';
+
 
 const ItemScreen = ({navigation}) => {
 
   //replace hardcodeded value with database query
-  
   const itemDesc = 'Cheeseburger with mozarella cheese, dill pickle, on sesame bun. Comes with fries or chips.'
   return(
 
     <View style = {styles.container}>
      
       <Image source={itempic} style={{width: "100%", height: '40%'}} /> 
+
       <View style={{margin:'5%'}}>
         <Text style={{fontSize:15}}>{itemDesc}</Text>
       </View> 
@@ -26,14 +24,12 @@ const ItemScreen = ({navigation}) => {
         label="Add to Order"
         color= "white"
         
-        onPress={() => console.log('Pressed')}
+        onPress={() => console.log("pressed")}
       />
       
     </View>
   );
 }
-
-export default ItemScreen
 
 const styles = StyleSheet.create({
     container: {
@@ -60,4 +56,6 @@ const styles = StyleSheet.create({
       backgroundColor:"#3fba3f"
     }
   });
+
+export default ItemScreen;
 

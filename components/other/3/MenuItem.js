@@ -8,7 +8,7 @@ const MenuItem = ({item}) => {
 
   const navigation = useNavigation();
   return(
-    <ListItem onPress={() => navigation.navigate("ItemScreen")} containerStyle = {{marginHorizontal:16,marginBottom:'2%', paddingLeft: '3%',borderRadius:6,height:70,backgroundColor:'#c9e9ff'}}>
+    <ListItem onPress={() => navigation.navigate("Sample Item Screen")} containerStyle = {{marginHorizontal:16,marginBottom:'2%', paddingLeft: '3%',borderRadius:6,height:70,backgroundColor:'#c9e9ff'}}>
       
       <ListItem.Content style={{flex:0.3}}>
         <Avatar 
