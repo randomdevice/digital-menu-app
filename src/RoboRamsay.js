@@ -24,7 +24,7 @@ export class RoboRamsay extends Component {
         return (
             <Tab.Navigator initialRouteName="MenuTab">
                 <Tab.Screen 
-                    name="MenuTab"
+                    name="Menu"
                     component={MenuStack} 
                     options={{
                         tabBarIcon: () => (
@@ -32,7 +32,7 @@ export class RoboRamsay extends Component {
                         )
                     }}/>
                 <Tab.Screen 
-                    name="OrdersTab" 
+                    name="Orders" 
                     component={OrderStack} 
                     options={{
                         tabBarIcon: () => (
@@ -40,7 +40,7 @@ export class RoboRamsay extends Component {
                         )
                     }}/>
                 <Tab.Screen
-                    name="SettingsTab" 
+                    name="Settings" 
                     component={EmptyScreen}
                     listeners={({ navigation }) => ({
                         tabPress: event => {
