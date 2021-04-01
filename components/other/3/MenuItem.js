@@ -14,7 +14,7 @@ const MenuItem = ({item}) => {
         <Avatar 
 
             source={
-              require('../../assets/burger.jpg')
+              require('../../../assets/burger.jpg')
             }
             >
           

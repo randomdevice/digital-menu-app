@@ -2,7 +2,7 @@ import { useLinkProps } from '@react-navigation/native';
 import React, { useCallback } from 'react';
 import { StyleSheet,StatusBar, Text, View,SectionList } from 'react-native';
 import { FAB } from 'react-native-paper';
-import MenuItem from '../../../components/3/MenuItem'
+import MenuItem from '../../../components/other/3/MenuItem'
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -67,7 +67,7 @@ const data = [
   
 ];
 
-export default MenuScreen = ({navigation}) => { 
+const MenuScreen = ({navigation}) => { 
 
   
   const renderItem =({item}) => {
@@ -109,6 +109,8 @@ export default MenuScreen = ({navigation}) => {
   </View>
   );
 }
+
+export default MenuScreen
 
 const styles = StyleSheet.create({
   container: {
