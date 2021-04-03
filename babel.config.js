@@ -8,7 +8,14 @@ module.exports = function(api) {
         {
           root: ["./"],
           alias: {
-            "auth": "./src/views/auth"
+            "@src": "./src",
+            "@assets": "./assets",
+            "@redux": "./redux",
+            "@components": "./components",
+            "@auth": "./src/auth/",
+            "@screens": "./src/screens/",
+            "@navigation": "./src/screens/navigation",
+            "@images": "./assets/images",
           }
         }
       ]
