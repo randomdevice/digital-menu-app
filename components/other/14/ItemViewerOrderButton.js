@@ -5,9 +5,17 @@ function onPressFunction(){
 	Alert.alert('Order has been Placed')
 }
 
+export default ItemViewerOrderButtonContainer = () => {
+  //backend
+
+  // return presentation
+  return (
+    <ItemViewerOrderButton/>
+  )
+}
 
 
-export default function ItemViewerOrderButton() {
+const ItemViewerOrderButton= () => {
   return (
 <SafeAreaView style={styles.container}>
 		<View>
