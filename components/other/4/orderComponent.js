@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text,StyleSheet, SafeAreaView, View,} from 'react-native';
 import { ListItem } from 'react-native-elements'
-import Constants from 'expo-constants';
 // TODO WHAT THE HUH IS AAAAAA
 
 var orderedItems = [
