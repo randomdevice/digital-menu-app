@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text,StyleSheet, SafeAreaView, View,} from 'react-native';
 import { ListItem } from 'react-native-elements'
+import Constants from 'expo-constants';
 // TODO WHAT THE HUH IS AAAAAA
 
 var orderedItems = [
@@ -12,8 +13,16 @@ var orderedItems = [
 	{itemPrice: 6.69, itemName: "Ice Cream", itemQty: 1}
 ]
 
-
-export default function orderComponent(){
+export default orderComponentContainer = () => {
+	//backend
+  
+	// return presentation
+	return (
+	  <orderComponent/>
+	)
+  }
+  
+const orderComponent= () => {
 	return (
     <SafeAreaView style={styles.container}>
 		<View style = {styles.container}>
