@@ -1,47 +1,76 @@
-import React, { Component } from 'react'
-import * as firebase from 'firebase'
-import { View, Button, TextInput } from 'react-native'
+import React, { useState } from 'react';
+import { TextInput, View, StyleSheet, Button } from 'react-native';
+import Constants from 'expo-constants';
+import firebase from 'firebase'
 
-export class Login extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            email: '',
-            password: ''
-        }
-
-        this.onSignIn = this.onSignIn.bind(this)
-    }
-
-    onSignIn() {
-        const { email, password } = this.state;
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then((result) => {
-                console.log(result)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-
-    }
-
-    render() {
-        return (
-            <View>
-                <TextInput
-                    placeholder="email"
-                    onChangeText={(email) => this.setState({email})}/>
-                <TextInput
-                    placeholder="password"
-                    secureTextEntry={true}
-                    onChangeText={(password) => this.setState({password})}/>
-                <Button 
-                    onPress={() => this.onSignUp()}
-                    title="Sign In"/>
-            </View>
-        )
-    }
+const onSignIn = (state) => {
+    const { email, password } = state;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((result) => {
+            console.log(result)
+        })
+        .catch((error) => {
+            console.log(error)
+        });
 }
 
-export default Login
+// Container
+export default function LoginContainer() {
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+
+    const state = {
+        email,
+        password,
+        setEmail,
+        setPassword,
+    }
+
+    return(
+        <Login state={state} />
+    )
+}
+
+// Presentation
+const Login = ({ state }) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.topView}>
+        <TextInput
+            style={styles.inputFields}
+            onChangeText={(text) => state.setEmail(text)}
+            placeholder={"email"}/>
+        <TextInput
+            style={styles.inputFields}
+            onChangeText={(text) => state.setPassword(text)}
+            placeholder={"password"}
+            secureTextEntry={true}/>
+        <Button
+          title={"Sign Up"}
+          onPress={() => onSignIn(state)}/>
+      </View>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: 'white'
+  },
+  inputFields: {
+    padding:2,
+    margin: 2
+  },
+  topView: {
+    width: '100%',
+    justifyContent: "space-evenly",
+    alignSelf: 'center',
+    position: 'absolute',
+    top: 0,
+    paddingTop: Constants.statusBarHeight,
+    padding: 10
+  },
+});

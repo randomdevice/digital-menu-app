@@ -12,7 +12,7 @@ module.exports = function(api) {
             "@assets": "./assets",
             "@redux": "./redux",
             "@components": "./components",
-            "@auth": "./src/auth/",
+            "@auth": "./src/test/auth/",
             "@screens": "./src/screens/",
             "@navigation": "./src/screens/navigation",
             "@images": "./assets/images",
