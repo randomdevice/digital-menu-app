@@ -11,7 +11,6 @@ function guestSignIn() {
       firebase.firestore().collection("users")
           .doc(firebase.auth().currentUser.uid)
           .set({
-              user: firebase.auth().currentUser.uid,
               role: 'guest'
           })
     })
