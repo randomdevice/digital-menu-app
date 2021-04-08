@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet,StatusBar, Image,Text, View,} from 'react-native';
 import {FAB} from 'react-native-paper';
-import itempic from '../../../assets/hamburger_item_pic.jpg';
+import itempic from '@assets/hamburger_item_pic.jpg';
 
 
 const ItemScreen = ({navigation}) => {

@@ -1,37 +1,56 @@
-import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button, SafeAreaView, FlatList, StatusBar } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import Constants from 'expo-constants';
+import firebase from 'firebase'
+import Item from '@menu-components/ItemCell'
 
-export class Menu extends Component {
-    constructor({ navigation }) {
-        super({ navigation })
-        this.navigation = navigation
-    }
+export default function Menu() {
+  const [menu, setMenu] = useState(null)
 
-    render() {
-        return (
-            <View>
-                <Text>
-                    Hello this is the menu
-                </Text>
-            </View>
-        )
-    }
+  // Is called once when the component is loaded.
+  // Then gets data and stores it in a local array.
+  // Updates app state with setMenu func
+  // menu is now an array of objects that can be passed in and read from every item.
+  useEffect(() => {
+    let items = []
+    firebase.firestore().collection("items").get().then((querySnapshot) => {
+      querySnapshot.docs.forEach((doc) => {
+        items.push({
+          key: doc.id, 
+          data: doc.data()
+        })
+      });
+
+      setMenu(items);
+    })
+  }, [])
+
+  console.log(menu)
+
+  if (menu != null) {
+
+    return (
+      <FlatList
+        style={styles.container}
+        data={menu}
+        renderItem={({ item }) => (
+          <Item item={item.data}/>
+        )}
+      />
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: StatusBar.currentHeight || 0,
-    },
-    item: {
-        backgroundColor: '#f9c2ff',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-    },
-    title: {
-        fontSize: 32,
-    },
+  container: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: 'white',
+    padding: 10,
+  },
 });
-  
-export default Menu

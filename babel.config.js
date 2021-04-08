@@ -11,9 +11,10 @@ module.exports = function(api) {
             "@src": "./src",
             "@assets": "./assets",
             "@redux": "./redux",
-            "@components": "./components",
-            "@auth": "./src/test/auth/",
-            "@screens": "./src/screens/",
+            "@menu-components": "./components/test/menu",
+            "@auth": "./src/screens/auth",
+            "@views": "./src/screens/views",
+            "@screens": "./src/screens",
             "@navigation": "./src/screens/navigation",
             "@images": "./assets/images",
           }

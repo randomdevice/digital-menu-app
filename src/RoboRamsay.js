@@ -1,66 +1,32 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-// Redux store config imports
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { fetchUser } from '../redux/actions/actions'
-
-// Tab Navigator import
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Icon } from 'react-native-elements'
-import MenuStack from './screens/navigation/MenuStack'
-import OrderStack from './screens/navigation/OrderStack'
-import MenuScreen from './screens/other/MenuScreen'
-const Tab = createBottomTabNavigator()
-const EmptyScreen = () => {
-    return null
-} 
+import Menu from '@views/Menu'
+import Orders from '@views/Orders'
+import { useNavigation } from '@react-navigation/native';
 
-export class RoboRamsay extends Component {
-    componentDidMount() {
-        this.props.fetchUser();
-    }
-    render() {
-        return (
-            <Tab.Navigator initialRouteName="MenuTab">
-                <Tab.Screen 
-                    name="Menu"
-                    component={MenuScreen} 
-                    options={{
-                        tabBarIcon: () => (
-                            <Icon name="menu-book"/>
-                        )
-                    }}/>
-                <Tab.Screen 
-                    name="Orders" 
-                    component={OrderStack} 
-                    options={{
-                        tabBarIcon: () => (
-                            <Icon name="local-dining"/>
-                        )
-                    }}/>
-                <Tab.Screen
-                    name="Settings" 
-                    component={EmptyScreen}
-                    listeners={({ navigation }) => ({
-                        tabPress: event => {
-                            event.preventDefault();
-                            navigation.navigate("Settings")
-                        }
-                    })}
-                    options={{
-                        tabBarIcon: () => (
-                            <Icon name="settings"/>
-                        )
-                    }}/>
-            </Tab.Navigator>
-        )
-    }
+const Tab = createBottomTabNavigator();
+
+const Empty = () => {
+    return null
 }
 
-const mapStateToProps = (store) => ({
-    currentUser: store.userState.currentUser
-})
-const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser}, dispatch)
+export default function RoboRamsay() {
+    const navigation = useNavigation();
 
-export default connect(mapStateToProps, mapDispatchProps)(RoboRamsay)
+    return (
+        <Tab.Navigator>
+            <Tab.Screen name="Menu" component={Menu}/>
+            <Tab.Screen name="Orders" component={Orders}/>
+            <Tab.Screen name="Settings" 
+                component={Empty}
+                listeners={() => ({
+                    tabPress: event => {
+                        event.preventDefault();
+                        navigation.navigate("Settings")
+                    }
+                })} 
+                />
+        </Tab.Navigator>
+    )
+}

@@ -1,29 +1,21 @@
-// Firebase
+// Firebase Import
 import * as firebase from 'firebase';
 
-// Components
+// Component Imports
 import 'react-native-gesture-handler';
 //import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Landing from '@auth/Landing';
+import Register from '@auth/Register';
+import Login from '@auth/Login';
+import RoboRamsay from '@src/RoboRamsay';
+import ItemScreen from '@screens/other/ItemScreen'
+import Settings from '@screens/Settings'
 
-// Redux imports
-import { Provider } from 'react-redux'
-import store from '@redux/store/store'
-
-// View/Navigation imports
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import Landing from '@auth/Landing'
-import Login from '@auth/Login'
-import Register from '@auth/Register'
-import RoboRamsay from '@src/RoboRamsay'
-import Settings from '@src/test/Settings'
-import MenuScreen from '@screens/other/MenuScreen' 
-import ItemScreen from '@screens/other/ItemScreen' 
-import OrderViewer from '@screens/other/OrderViewer'
-
-
+/** Firebase Configuration */
 const firebaseConfig = {
   apiKey: "AIzaSyBtqt8P4N1FoA6h_esTIE0yMlH36mzziAE",
   authDomain: "robo-ramsay.firebaseapp.com",
@@ -38,30 +30,45 @@ if(firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
 }
 
+/** Contexts and Stack Navigation */
 const Stack = createStackNavigator();
+export const SessionContext = createContext([{}, () => {}])
 
 export default function App() {
-  const [ state, setState ] = useState({ loaded: false, loggedIn: false });
+  /** Defines application state Hooks for users 
+   *  loaded: keeps track of load state of app
+   *  loggedIn: keeps track of login state
+   *  user: keeps track of current user logged in
+  */
+  const [ session, setSession ] = useState({ loaded: false, loggedIn: false, user: null });
 
+  /**
+   * Updates state according to whether a User is logged in or not
+   */
   useEffect(
     () => {
       firebase.auth().onAuthStateChanged((user) => {
         if(!user) {
-          setState({
+          setSession({
             loggedIn: false,
-            loaded: true
+            loaded: true,
+            user: null
           })
         } else {
-          setState({
+          setSession({
             loggedIn: true,
-            loaded: true
+            loaded: true,
+            user: firebase.auth().currentUser.uid
           })
         }
       })
-    }, []
+    }, [session]
   )
-    
-  if(!state.loaded) {
+
+  /**
+   * Loads loading screen if main App hasn't loaded
+   */
+  if(!session.loaded) {
     return(
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text> Loading... </Text>
@@ -69,29 +76,33 @@ export default function App() {
     )
   }
 
-  if(!state.loggedIn) {
+  /**
+   * If no user is logged in, show Landing page
+   */
+  if(!session.loggedIn) {
     return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Landing">
-          <Stack.Screen name="Landing" component={Landing} options={{ headerShown: false }}/>
-          <Stack.Screen name="Register" component={Register}/>
-          <Stack.Screen name="Login" component={Login}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Landing">
+            <Stack.Screen name="Landing" component={Landing} options={{ headerShown: false }}/>
+            <Stack.Screen name="Register" component={Register}/>
+            <Stack.Screen name="Login" component={Login}/>
+          </Stack.Navigator>
+        </NavigationContainer>
     )
   }
 
+  /**
+   * If a user is logged in, show App
+   */
   return(
-    <Provider store={store}>
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="RoboRamsay">
-              <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
-              <Stack.Screen name="Settings" component={Settings}/>
-              <Stack.Screen name='Order Viewer' component={OrderViewer}/>
-              <Stack.Screen name="Menu Screen" component={MenuScreen}/>
-              <Stack.Screen name="Sample Item Screen" component={ItemScreen}/>
-            </Stack.Navigator>
-        </NavigationContainer>
-    </Provider>
+    <SessionContext.Provider value={[session, setSession]}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Landing">
+          <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
+          <Stack.Screen name="ItemScreen" component={ItemScreen} />
+          <Stack.Screen name="Settings" component={Settings}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SessionContext.Provider>
   )
 }
