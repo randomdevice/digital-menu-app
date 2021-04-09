@@ -49,7 +49,7 @@ const orderComponent= () => {
 	)
   
 }
-
+export default orderComponent;
 const styles = StyleSheet.create({
   container:{
     flex:1,

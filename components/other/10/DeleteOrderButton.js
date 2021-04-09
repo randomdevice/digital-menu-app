@@ -18,6 +18,7 @@ export default function DeleteOrderButton() {
 		</View>
   );
 }
+export default DeleteOrderButton;
 
 const styles = StyleSheet.create({
   container:{

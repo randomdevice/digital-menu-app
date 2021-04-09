@@ -26,3 +26,4 @@ export default function App() {
     </View>
   );
 }
+export default OrderStatusBar;

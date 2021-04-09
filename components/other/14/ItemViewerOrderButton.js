@@ -28,6 +28,7 @@ const ItemViewerOrderButton= () => {
   </SafeAreaView>
   );
 }
+export default ItemViewerOrderButton;
 
 const styles = StyleSheet.create({
   container:{

@@ -18,6 +18,7 @@ export default function ItemViewerDescriptionComponent() {
     </View>
   );
 }
+export default Suggestions;
 
 var styles = StyleSheet.create({
   container: {
