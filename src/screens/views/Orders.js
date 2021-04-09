@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import {View, Text} from 'react-native'
 import Constants from 'expo-constants';
 import firebase from 'firebase'
-
+import OrderStatusBar from '@components/other/2/OrderStatusBar';
+import orderComponent from '@components/other/4/orderComponent';
+import Suggestions from '@components/other/8/Suggestions';
+import RequestWaiterButton from '@components/other/12/RequestWaiterButton';
 export class OrderDashboard extends Component {
     render() {
         return (
