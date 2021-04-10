@@ -1,11 +1,15 @@
 // Firebase Import
 import * as firebase from 'firebase';
 
-// Component Imports
+// Providers
 import 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 //import { StatusBar } from 'expo-status-bar';
+
+// Component Imports
 import React, { useState, useEffect, createContext } from 'react';
 import { Text, View } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Landing from '@auth/Landing';
@@ -96,13 +100,15 @@ export default function App() {
    */
   return(
     <SessionContext.Provider value={[session, setSession]}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Landing">
-          <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
-          <Stack.Screen name="ItemScreen" component={ItemScreen} />
-          <Stack.Screen name="Settings" component={Settings}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Landing">
+            <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
+            <Stack.Screen name="ItemScreen" component={ItemScreen} />
+            <Stack.Screen name="Settings" component={Settings}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </SessionContext.Provider>
   )
 }
