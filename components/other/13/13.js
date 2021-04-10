@@ -1,19 +1,11 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Header, PricingCard, Button, ListItem, Icon, Text} from 'react-native-elements'
+import { View } from 'react-native';
+import { Header, Button, ListItem, Text} from 'react-native-elements'
 import Constants from 'expo-constants';
 import { MaterialIcons, Ionicons} from '@expo/vector-icons';
 import {
-  SafeAreaView,
   SafeAreaProvider,
-  SafeAreaInsetsContext,
 } from 'react-native-safe-area-context';
-
-// You can import from local files
-import AssetExample from './components/AssetExample';
-
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
 
 //FOR ALAN OR WHOEVER IS GOING TO EDIT THIS. THIS IS A CONST LIST ATM, BUT CHANGE THIS LIST TO FIT WHATEVER THE INPUT FROM THE PREVIOUS PAGE GIVES. NOTE THAT EACH OBJECT MUST HAVE A TITLE AND VALUE SIMILAR TO THE LIST HERE. DIDNT HAVE ENOUGH TIME TO IMPLEMENT THE FUNCTION FOR THE SUM AND TAXES
 const list = [

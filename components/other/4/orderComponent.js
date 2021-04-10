@@ -12,16 +12,18 @@ var orderedItems = [
 	{itemPrice: 6.69, itemName: "Ice Cream", itemQty: 1}
 ]
 
-const orderComponentContainer = () => {
+const OrderComponentContainer = () => {
 	//backend
 
 	// return presentation
 	return (
-		<orderComponent/>
+		<OrderComponent/>
 	)
 }
+
+export default OrderComponentContainer
   
-const orderComponent= () => {
+const OrderComponent= () => {
 	return (
     <SafeAreaView style={styles.container}>
 		<View style = {styles.container}>

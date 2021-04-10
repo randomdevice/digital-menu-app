@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { TextInput, View, StyleSheet, Button } from 'react-native';
+import { TextInput, Text , View, StyleSheet, Button } from 'react-native';
 import Constants from 'expo-constants';
 import firebase from 'firebase'
 
 const onSignIn = (state) => {
-    const { email, password } = state;
+    const { email, password, setError } = state;
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result) => {
             console.log(result)
         })
         .catch((error) => {
             console.log(error)
+            setError(1)
         });
 }
 
@@ -18,10 +19,16 @@ const onSignIn = (state) => {
 export default function LoginContainer() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ error, setError ] = useState(0);
+    const [ emessage, setEmessage ] = useState('');
 
     const state = {
         email,
         password,
+        error,
+        emessage,
+        setError,
+        setEmessage,
         setEmail,
         setPassword,
     }
@@ -33,24 +40,48 @@ export default function LoginContainer() {
 
 // Presentation
 const Login = ({ state }) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.topView}>
-        <TextInput
-            style={styles.inputFields}
-            onChangeText={(text) => state.setEmail(text)}
-            placeholder={"email"}/>
-        <TextInput
-            style={styles.inputFields}
-            onChangeText={(text) => state.setPassword(text)}
-            placeholder={"password"}
-            secureTextEntry={true}/>
-        <Button
-          title={"Sign Up"}
-          onPress={() => onSignIn(state)}/>
-      </View>
-    </View>
-  )
+    if (!state.error) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.topView}>
+            <TextInput
+                style={styles.inputFields}
+                onChangeText={(text) => state.setEmail(text)}
+                placeholder={"email"}/>
+            <TextInput
+                style={styles.inputFields}
+                onChangeText={(text) => state.setPassword(text)}
+                placeholder={"password"}
+                secureTextEntry={true}/>
+            <Button
+              title={"Sign Up"}
+              onPress={() => onSignIn(state)}/>
+          </View>
+        </View>
+      )
+    }
+
+    if (state.error) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.topView}>
+            <TextInput
+                style={styles.inputFields}
+                onChangeText={(text) => state.setEmail(text)}
+                placeholder={"email"}/>
+            <TextInput
+                style={styles.inputFields}
+                onChangeText={(text) => state.setPassword(text)}
+                placeholder={"password"}
+                secureTextEntry={true}/>
+            <Text> Incorrect password or username </Text>
+            <Button
+              title={"Sign Up"}
+              onPress={() => onSignIn(state)}/>
+          </View>
+        </View>
+      )
+    }
 }
 
 const styles = StyleSheet.create({
