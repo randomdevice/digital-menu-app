@@ -8,7 +8,7 @@ var itemDescriptionText = 'Hamburgers\n Pizza \n Ice Cream';
 var itemTypeText = ''
 var itemContainsText = ''
 
-export default function ItemViewerDescriptionComponent() {
+function Suggestions() {
   return (
     <View style = {styles.container}>
             <Text style = {styles.heading}>Suggestions:</Text>
@@ -18,6 +18,7 @@ export default function ItemViewerDescriptionComponent() {
     </View>
   );
 }
+
 export default Suggestions;
 
 var styles = StyleSheet.create({

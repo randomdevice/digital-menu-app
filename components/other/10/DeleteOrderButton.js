@@ -7,7 +7,7 @@ function onPressFunction(){
 }
 
 
-export default function DeleteOrderButton() {
+function DeleteOrderButton() {
   return (
 		<View style = {styles.container}>
 			<Button 
@@ -18,6 +18,7 @@ export default function DeleteOrderButton() {
 		</View>
   );
 }
+
 export default DeleteOrderButton;
 
 const styles = StyleSheet.create({

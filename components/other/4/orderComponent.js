@@ -12,14 +12,14 @@ var orderedItems = [
 	{itemPrice: 6.69, itemName: "Ice Cream", itemQty: 1}
 ]
 
-export default orderComponentContainer = () => {
+const orderComponentContainer = () => {
 	//backend
-  
+
 	// return presentation
 	return (
-	  <orderComponent/>
+		<orderComponent/>
 	)
-  }
+}
   
 const orderComponent= () => {
 	return (
@@ -49,7 +49,7 @@ const orderComponent= () => {
 	)
   
 }
-export default orderComponent;
+
 const styles = StyleSheet.create({
   container:{
     flex:1,

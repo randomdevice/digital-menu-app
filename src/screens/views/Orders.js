@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 import Constants from 'expo-constants';
 import firebase from 'firebase'
 import OrderStatusBar from '@components/other/2/OrderStatusBar';
