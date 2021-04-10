@@ -4,13 +4,27 @@ import Constants from 'expo-constants';
 import firebase from 'firebase'
 
 const onSignIn = (state) => {
-    const { email, password, setError } = state;
+    const { email, password, setError, setEmessage } = state;
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result) => {
             console.log(result)
         })
-        .catch((error) => {
-            console.log(error)
+        .catch((e) => {
+            console.log(e)
+            switch (e.code) {
+              case 'auth/invalid-email':
+                setEmessage('Invalid format for email address.')
+                break;
+              case 'auth/user-not-found':
+                setEmessage('User not found.')
+                break;
+              case 'auth/wrong-password':
+                setEmessage('Incorrect password.')
+                break;
+              default:
+                setEmessage('Incorrect username or password.')
+                break;
+            }
             setError(1)
         });
 }
@@ -40,48 +54,31 @@ export default function LoginContainer() {
 
 // Presentation
 const Login = ({ state }) => {
-    if (!state.error) {
-      return (
-        <View style={styles.container}>
-          <View style={styles.topView}>
-            <TextInput
-                style={styles.inputFields}
-                onChangeText={(text) => state.setEmail(text)}
-                placeholder={"email"}/>
-            <TextInput
-                style={styles.inputFields}
-                onChangeText={(text) => state.setPassword(text)}
-                placeholder={"password"}
-                secureTextEntry={true}/>
-            <Button
-              title={"Sign Up"}
-              onPress={() => onSignIn(state)}/>
-          </View>
-        </View>
-      )
+
+    let errorComponent = <Text></Text>
+    if(state.error) {
+      errorComponent = <Text>Incorrect email or password</Text>
     }
 
-    if (state.error) {
-      return (
-        <View style={styles.container}>
-          <View style={styles.topView}>
-            <TextInput
-                style={styles.inputFields}
-                onChangeText={(text) => state.setEmail(text)}
-                placeholder={"email"}/>
-            <TextInput
-                style={styles.inputFields}
-                onChangeText={(text) => state.setPassword(text)}
-                placeholder={"password"}
-                secureTextEntry={true}/>
-            <Text> Incorrect password or username </Text>
-            <Button
-              title={"Sign Up"}
-              onPress={() => onSignIn(state)}/>
-          </View>
+    return (
+      <View style={styles.container}>
+        <View style={styles.topView}>
+          <TextInput
+              style={styles.inputFields}
+              onChangeText={(text) => state.setEmail(text)}
+              placeholder={"email"}/>
+          <TextInput
+              style={styles.inputFields}
+              onChangeText={(text) => state.setPassword(text)}
+              placeholder={"password"}
+              secureTextEntry={true}/>
+          {errorComponent}
+          <Button
+            title={"Sign Up"}
+            onPress={() => onSignIn(state)}/>
         </View>
-      )
-    }
+      </View>
+    )
 }
 
 const styles = StyleSheet.create({
