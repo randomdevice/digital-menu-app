@@ -27,4 +27,5 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     marginHorizontal:16
   }
+
 })

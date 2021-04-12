@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     justifyContent:'center',
-    marginHorizontal:16
+    marginHorizontal:8,
+    marginVertical: 10
   },
   title:{
     textAlign:'center',

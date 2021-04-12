@@ -30,18 +30,19 @@ const OrderComponent= () => {
 			<View></View>
 			{
 				orderedItems.map((orderedItem, i) => (
-					<ListItem key={i} bottomDivider>
-						<Text>Item:</Text>
+					<ListItem containerStyle = {{marginVertical: 4, marginHorizontal:16,marginBottom:'2%', paddingLeft: '3%',borderRadius:6,height:40,backgroundColor:'#c9e9ff'}}
+					key={i} bottomDivider>
+						
 						<ListItem.Content>
-							<ListItem.Title>{orderedItem.itemName}</ListItem.Title>
+							<ListItem.Title style = {styles.descriptionText}>{orderedItem.itemName}</ListItem.Title>
 						</ListItem.Content>
-							<Text>Price:</Text>
+							<Text>Price: $</Text>
 						<ListItem.Content>
-							<ListItem.Title>{orderedItem.itemPrice}</ListItem.Title>
+							<ListItem.Title style = {styles.descriptionText}>{orderedItem.itemPrice}</ListItem.Title>
 						</ListItem.Content> 
             <Text>Qty:</Text>
 						<ListItem.Content>
-						<ListItem.Title>{orderedItem.itemQty}</ListItem.Title>
+						<ListItem.Title style = {styles.descriptionText}>{orderedItem.itemQty}</ListItem.Title>
             </ListItem.Content>
 					</ListItem>
 				))
@@ -54,19 +55,16 @@ const OrderComponent= () => {
 
 const styles = StyleSheet.create({
   container:{
-    flex:1,
+    flex:0,
     justifyContent:'center',
-    marginHorizontal:1
+    marginHorizontal:1,
+	marginVertical:0,
   },
-  title:{
-    textAlign:'center',
-    marginVertical:8
-  },
-  fitToText:{
-    flexDirection:'row',
-    justifyContent:'space-between'
-  },
-  separator:{
-    marginVertical:8,
+	descriptionText: {
+		textAlign: 'left',
+			color: '#000000',
+			fontFamily: 'oswald',
+		fontSize: 12,
+		padding: 1,
   },
 })
