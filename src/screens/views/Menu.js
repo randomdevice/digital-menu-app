@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 import firebase from 'firebase'
-import Item from '@menu-components/ItemCell'
+import Item from '@components/test/menu/Item'
 
 export default function Menu() {
   const [menu, setMenu] = useState(null)
@@ -28,13 +28,12 @@ export default function Menu() {
   console.log(menu)
 
   if (menu != null) {
-
     return (
       <FlatList
         style={styles.container}
         data={menu}
         renderItem={({ item }) => (
-          <Item item={item.data}/>
+          <Item item={item}/>
         )}
       />
     );

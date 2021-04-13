@@ -8,15 +8,15 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Component Imports
 import React, { useState, useEffect, createContext } from 'react';
-import { Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, TabRouter } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Landing from '@auth/Landing';
 import Register from '@auth/Register';
 import Login from '@auth/Login';
 import RoboRamsay from '@src/RoboRamsay';
-import ItemScreen from '@screens/other/ItemScreen'
+import ItemViewer from '@screens/views/ItemViewer'
 import Settings from '@screens/Settings'
 
 /** Firebase Configuration */
@@ -44,6 +44,7 @@ export default function App() {
    *  loggedIn: keeps track of login state
    *  user: keeps track of current user logged in
   */
+
   const [ session, setSession ] = useState({ loaded: false, loggedIn: false, user: null });
 
   /**
@@ -75,6 +76,7 @@ export default function App() {
   if(!session.loaded) {
     return(
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large"/>
         <Text> Loading... </Text>
       </View>
     )
@@ -104,7 +106,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
-            <Stack.Screen name="ItemScreen" component={ItemScreen} />
+            <Stack.Screen name="ItemViewer" component={ItemViewer} options={({route}) => ({ title: route.params.title })} />
             <Stack.Screen name="Settings" component={Settings}/>
           </Stack.Navigator>
         </NavigationContainer>

@@ -10,16 +10,16 @@ import DeleteOrderButton from '@components/other/10/DeleteOrderButton';
 export class OrderDashboard extends Component {
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-                <OrderStatusBar/>
-                <OrderComponent/>              
-                <Suggestions/>
-                <RequestWaiterButton/>
-                <DeleteOrderButton />
-                
-             </ScrollView>
-             </SafeAreaView>
+          <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.scrollView}>
+              <OrderStatusBar/>
+              <OrderComponent/>              
+              <Suggestions/>
+              <RequestWaiterButton/>
+              <DeleteOrderButton />
+              
+            </ScrollView>
+          </SafeAreaView>
         )
     }
 }

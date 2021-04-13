@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, Image, View, StyleSheet } from 'react-native';
 import snack from '@images/snack-logo.png'
 import { useNavigation } from '@react-navigation/native'
@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 const ItemContainer = ({ item }) => {
 
   let text = {
+    key: null,
     title: "Item Name",
     desc: "Description",
     price: "0.00"
@@ -13,9 +14,10 @@ const ItemContainer = ({ item }) => {
 
   if(item != null) {
     text = {
-      title: item.itemName,
-      desc: item.itemDescriptionMini,
-      price: item.itemPrice
+      key: item.key,
+      title: item.data.itemName,
+      desc: item.data.itemDescriptionMini,
+      price: item.data.itemPrice
     }
   }
 
@@ -28,28 +30,29 @@ export default ItemContainer
 
 const Item = ({ text }) => {
 
-    const navigation = useNavigation();
+  const navigation = useNavigation()
 
-    return(
-        <TouchableOpacity onPress={() => navigation.navigate("ItemScreen")}>
-            <View style={styles.listItem}>
-            <View style={styles.listContent}>
-                <View style={styles.listImage}>
-                <Image source={snack} style={{height: 40, width: 40}}/>
-                </View>
-                <View style={styles.listTextBlock}>
-                <View style={styles.listInfo}>
-                    <Text style={styles.title}>{text.title}</Text>
-                    <Text numberOfLines={1} style={styles.subtitle}>{text.desc.substring(0,20)}</Text>
-                </View>
-                <View style={styles.listPrice}>
-                    <Text style={styles.price}>{"$" + text.price}</Text>
-                </View>
-                </View>
+  // item.key data to send to ItemViewer
+  return(
+    <TouchableOpacity onPress={() => navigation.navigate("ItemViewer", { key: text.key, title: text.title })}>
+      <View style={styles.listItem}>
+        <View style={styles.listContent}>
+          <View style={styles.listImage}>
+            <Image source={snack} style={{height: 40, width: 40}}/>
+          </View>
+          <View style={styles.listTextBlock}>
+            <View style={styles.listInfo}>
+              <Text style={styles.title}>{text.title}</Text>
+              <Text numberOfLines={1} style={styles.subtitle}>{text.desc.substring(0,20)}</Text>
             </View>
+            <View style={styles.listPrice}>
+              <Text style={styles.price}>{"$" + text.price}</Text>
             </View>
-        </TouchableOpacity>
-    )
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({

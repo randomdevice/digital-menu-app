@@ -57,7 +57,7 @@ const Login = ({ state }) => {
 
     let errorComponent = <Text></Text>
     if(state.error) {
-      errorComponent = <Text>Incorrect email or password</Text>
+      errorComponent = <Text>{state.emessage}</Text>
     }
 
     return (

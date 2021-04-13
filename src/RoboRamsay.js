@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Menu from '@views/Menu'
 import Orders from '@views/Orders'
 import { useNavigation } from '@react-navigation/native';
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,24 @@ export default function RoboRamsay() {
     const navigation = useNavigation();
 
     return (
-        <Tab.Navigator>
+        <Tab.Navigator         
+            screenOptions={({ route }) => ({
+            tabBarIcon: ({ color, size }) => {
+                let iconName;
+
+                if (route.name === 'Menu') {
+                    iconName = 'book';
+                } else if (route.name === 'Orders') {
+                    iconName = 'restaurant';
+                } else {
+                    iconName = 'settings';
+                }
+
+                // You can return any component that you like here!
+                return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            })}
+        >
             <Tab.Screen name="Menu" component={Menu}/>
             <Tab.Screen name="Orders" component={Orders}/>
             <Tab.Screen name="Settings" 
