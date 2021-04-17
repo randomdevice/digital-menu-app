@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Text, View, Image, StyleSheet, Button } from 'react-native';
 import Constants from 'expo-constants';
 import Logo from '@images/snack-logo.png'
@@ -22,6 +22,8 @@ function guestSignIn() {
 
 // Container
 export default function LandingContainer({ navigation }) {
+
+
   return (
     <Landing navigation={navigation}/>
   );

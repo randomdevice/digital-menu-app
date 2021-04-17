@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Menu from '@views/Menu'
-import Orders from '@views/Orders'
+import Menu from '@views/customer/Menu'
+import Orders from '@views/customer/Orders'
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons'
 

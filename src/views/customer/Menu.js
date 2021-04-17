@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 import firebase from 'firebase'
-import Item from '@components/test/menu/Item'
+import Item from '@components/menu/Item'
 import { useIsFocused } from '@react-navigation/native'
 
 export default function Menu() {

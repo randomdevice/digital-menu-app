@@ -4,6 +4,28 @@ import Constants from 'expo-constants';
 import { useRoute } from '@react-navigation/native';
 import firebase from 'firebase';
 
+// Container
+export default function ItemViewerContainer() {
+    const [item, setItem] = useState(null);
+    const route = useRoute();
+    const key = route.params.key;
+
+
+    useEffect(() => {
+        firebase.firestore().collection("items").doc(key).get().then((doc) => {
+            setItem(doc.data())
+        });
+    }, [])
+
+    if (key != null && item != null) {
+      return <ItemViewer ikey={key} item={item}/>
+    }
+
+    return (
+      <ItemViewer/>
+    )
+}
+
 const makeOrder = async (payload) => {
   let user = firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid)
   let snapshot = await user.get()
@@ -33,28 +55,6 @@ const makeOrder = async (payload) => {
       currentOrders: [ payload ]
     }, { merge: true })
   }
-}
-
-// Container
-export default function ItemViewerContainer() {
-    const [item, setItem] = useState(null);
-    const route = useRoute();
-    const key = route.params.key;
-
-
-    useEffect(() => {
-        firebase.firestore().collection("items").doc(key).get().then((doc) => {
-            setItem(doc.data())
-        });
-    }, [])
-
-    if (key != null && item != null) {
-      return <ItemViewer ikey={key} item={item}/>
-    }
-
-    return (
-      <ItemViewer/>
-    )
 }
 
 // Presentation

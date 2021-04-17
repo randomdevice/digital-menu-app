@@ -9,15 +9,11 @@ module.exports = function(api) {
           root: ["./"],
           alias: {
             "@src": "./src",
-            "@assets": "./assets",
-            "@redux": "./redux",
-            "@menu-components": "./components/test/menu",
-            "@auth": "./src/screens/auth",
-            "@views": "./src/screens/views",
-            "@screens": "./src/screens",
-            "@navigation": "./src/screens/navigation",
+            "@auth": "./src/views/auth",
             "@images": "./assets/images",
-            "@components":"./components",
+            "@components": "./src/components",
+            "@views": "./src/views",
+            "@redux": "./redux"
           }
         }
       ]

@@ -10,15 +10,14 @@ const onSignIn = (state) => {
             console.log(result)
         })
         .catch((e) => {
-            console.log(e)
             switch (e.code) {
-              case 'auth/invalid-email':
+              case "auth/invalid-email":
                 setEmessage('Invalid format for email address.')
                 break;
-              case 'auth/user-not-found':
+              case "auth/user-not-found":
                 setEmessage('User not found.')
                 break;
-              case 'auth/wrong-password':
+              case "auth/wrong-password":
                 setEmessage('Incorrect password.')
                 break;
               default:
@@ -74,7 +73,7 @@ const Login = ({ state }) => {
               secureTextEntry={true}/>
           {errorComponent}
           <Button
-            title={"Sign Up"}
+            title={"Log In"}
             onPress={() => onSignIn(state)}/>
         </View>
       </View>

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import OrderCell from '@components/test/orders/OrderCell'
+import OrderCell from '@components/orders/OrderCell'
 import firebase from 'firebase'
 import { useIsFocused } from '@react-navigation/native'
 
@@ -27,11 +27,13 @@ export default function OrdersContainer() {
 
 function Orders({ orders }) {
     if (orders != null) {
-      return (
-        <View style={styles.container}>
-          <OrderCell orders={orders}/>
-        </View>
-      )
+      if (orders.length != 0) {
+        return (
+          <View style={styles.container}>
+            <OrderCell orders={orders}/>
+          </View>
+        )
+      }
     }
 
     return (

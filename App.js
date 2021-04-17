@@ -1,23 +1,21 @@
 // Firebase Import
 import * as firebase from 'firebase';
 
-// Providers
+// Component Imports
 import 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 //import { StatusBar } from 'expo-status-bar';
-
-// Component Imports
 import React, { useState, useEffect, createContext } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
-
-import { NavigationContainer, TabRouter } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Landing from '@auth/Landing';
 import Register from '@auth/Register';
 import Login from '@auth/Login';
 import RoboRamsay from '@src/RoboRamsay';
-import ItemViewer from '@screens/views/ItemViewer'
-import Settings from '@screens/Settings'
+import Settings from '@views/customer/Settings';
+import ItemViewer from '@views/customer/ItemViewer';
+import OrderViewer from '@views/customer/OrderViewer'
 
 /** Firebase Configuration */
 const firebaseConfig = {
@@ -44,7 +42,6 @@ export default function App() {
    *  loggedIn: keeps track of login state
    *  user: keeps track of current user logged in
   */
-
   const [ session, setSession ] = useState({ loaded: false, loggedIn: false, user: null });
 
   /**
@@ -87,13 +84,13 @@ export default function App() {
    */
   if(!session.loggedIn) {
     return (
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen name="Landing" component={Landing} options={{ headerShown: false }}/>
-            <Stack.Screen name="Register" component={Register}/>
-            <Stack.Screen name="Login" component={Login}/>
-          </Stack.Navigator>
-        </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Landing">
+          <Stack.Screen name="Landing" component={Landing} options={{ headerShown: false }}/>
+          <Stack.Screen name="Register" component={Register}/>
+          <Stack.Screen name="Login" component={Login}/>
+        </Stack.Navigator>
+      </NavigationContainer>
     )
   }
 
@@ -106,7 +103,8 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
-            <Stack.Screen name="ItemViewer" component={ItemViewer} options={({route}) => ({ title: route.params.title })} />
+            <Stack.Screen name="ItemViewer" component={ItemViewer} options={({route}) => ({ title: route.params.title })}/>
+            <Stack.Screen name="OrderViewer" component={OrderViewer} />
             <Stack.Screen name="Settings" component={Settings}/>
           </Stack.Navigator>
         </NavigationContainer>

@@ -5,21 +5,22 @@ import { ButtonGroup } from 'react-native-elements';
 import firebase from 'firebase'
 
 const onSignUp = (state) => {
-  const { email, password, firstname, lastname, role } = state;
+  const { email, password, firstname, lastname, role, setEmessage, setError } = state;
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((result) => {
         firebase.firestore().collection("users")
             .doc(firebase.auth().currentUser.uid)
             .set({
+                user: firebase.auth().currentUser.uid,
                 email: email,
                 firstname: firstname,
                 lastname: lastname,
                 role: role
             })
-        console.log(result)
     })
-    .catch((error) => {
-        console.log(error)
+    .catch((e) => {
+        setEmessage(e.message)
+        setError(1)
     });
 }
 
@@ -30,6 +31,8 @@ export default function RegisterContainer() {
   const [ lastname, setLastname ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ role, setRole ] = useState('manager')
+  const [ error, setError] = useState(0)
+  const [ emessage, setEmessage ] = useState('')
 
   const state = {
     role,
@@ -37,11 +40,15 @@ export default function RegisterContainer() {
     lastname,
     password,
     email,
+    error,
+    emessage,
     setEmail,
     setFirstname,
     setLastname,
     setPassword,
-    setRole
+    setRole,
+    setError,
+    setEmessage
   }
 
   return(
@@ -57,6 +64,11 @@ const Register = ({ state }) => {
   const updateRole = (selectedIndex) => {
     state.setRole(buttons[selectedIndex].toLowerCase())
     setPressed(selectedIndex)
+  }
+
+  let errorComponent = <Text></Text>
+  if(state.error) {
+    errorComponent = <Text>{state.emessage}</Text>
   }
 
   return (
@@ -83,6 +95,7 @@ const Register = ({ state }) => {
           <Text style={styles.textDes}>Select a Role</Text>
           <ButtonGroup onPress={(selectedIndex) => updateRole(selectedIndex)} selectedIndex={pressed} style={styles.buttonGroup} buttons={buttons}/>
         </View>
+        {errorComponent}
         <Button
           title={"Sign Up"}
           onPress={() => onSignUp(state)}/>

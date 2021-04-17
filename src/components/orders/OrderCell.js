@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-
+import { useNavigation } from '@react-navigation/native'
 // Container
 
 const OrderCellContainer = ({ orders }) => {
@@ -20,6 +20,7 @@ export default OrderCellContainer
 // Presentation
 
 const OrderCell = ({ orders }) => {
+  const navigation = useNavigation()
   let items = []
   orders.forEach(
     (item) => {
@@ -28,7 +29,7 @@ const OrderCell = ({ orders }) => {
   )
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress = {() => navigation.navigate("OrderViewer", orders)} style={styles.container}>
       <View style={styles.orderCell}>
         <InfoBlock orders={orders}/>
         <TextLabels/>
