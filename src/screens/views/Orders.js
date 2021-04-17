@@ -1,36 +1,62 @@
-import React, { Component } from 'react'
-import {View, Text, StyleSheet, ScrollView, SafeAreaView} from 'react-native'
-import Constants from 'expo-constants';
+import React, {useState, useEffect} from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import OrderCell from '@components/test/orders/OrderCell'
 import firebase from 'firebase'
-import OrderStatusBar from '@components/other/2/OrderStatusBar';
-import OrderComponent from '@components/other/4/orderComponent';
-import Suggestions from '@components/other/8/Suggestions';
-import RequestWaiterButton from '@components/other/12/RequestWaiterButton';
-import DeleteOrderButton from '@components/other/10/DeleteOrderButton';
-export class OrderDashboard extends Component {
-    render() {
-        return (
-          <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-              <OrderStatusBar/>
-              <OrderComponent/>              
-              <Suggestions/>
-              <RequestWaiterButton/>
-              <DeleteOrderButton />
-              
-            </ScrollView>
-          </SafeAreaView>
-        )
-    }
+import { useIsFocused } from '@react-navigation/native'
+
+export default function OrdersContainer() {
+    const [orders, setOrders] = useState(null)
+    const isFocused = useIsFocused();
+
+    useEffect(() => {
+      if (isFocused) {
+        firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
+          .then((snapshot) => {
+            let itemsSelected = snapshot.data().currentOrders
+            if (itemsSelected != undefined) {
+              setOrders(itemsSelected)
+            }
+          })
+      }
+    }, [isFocused])
+
+    return (
+        <Orders orders={orders}/>
+    )
 }
 
+function Orders({ orders }) {
+    if (orders != null) {
+      return (
+        <View style={styles.container}>
+          <OrderCell orders={orders}/>
+        </View>
+      )
+    }
+
+    return (
+      <View style={styles.blank}>
+        <Text style={styles.blankText}>No Orders Made Yet 👻</Text>
+      </View>
+    )
+}
+
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: Constants.statusBarHeight,
-      backgroundColor: 'white',
-      padding: 10,
-    },
-  });
-  
-export default OrderDashboard
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    padding: '5%'
+  },
+  blank: {
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'center', 
+    alignItems: 'center',
+  },
+  blankText: {
+    fontSize: 23,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  }
+});

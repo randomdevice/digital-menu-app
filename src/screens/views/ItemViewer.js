@@ -4,10 +4,43 @@ import Constants from 'expo-constants';
 import { useRoute } from '@react-navigation/native';
 import firebase from 'firebase';
 
+const makeOrder = async (payload) => {
+  let user = firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid)
+  let snapshot = await user.get()
+  let prevOrder = await snapshot.data().currentOrders
+
+  if (prevOrder != undefined) {
+    let newOrder = [...prevOrder]
+    let match = false
+    // checks if duplicates exist
+    newOrder.forEach((item) => {
+      if (item.key == payload.key) {
+        item.quant = item.quant + payload.quant
+        match = true
+      }
+    })
+    // if no duplicates exist add a new one
+    if (!match) {
+      newOrder = [...prevOrder, payload ]
+    }
+
+    user.set({
+      currentOrders: newOrder,
+    }, { merge: true })
+
+  } else {
+    user.set({
+      currentOrders: [ payload ]
+    }, { merge: true })
+  }
+}
+
+// Container
 export default function ItemViewerContainer() {
     const [item, setItem] = useState(null);
     const route = useRoute();
     const key = route.params.key;
+
 
     useEffect(() => {
         firebase.firestore().collection("items").doc(key).get().then((doc) => {
@@ -15,17 +48,19 @@ export default function ItemViewerContainer() {
         });
     }, [])
 
-    if (item != null) {
-        return <ItemViewer item={item}/>
+    if (key != null && item != null) {
+      return <ItemViewer ikey={key} item={item}/>
     }
 
     return (
-        <ItemViewer/>
+      <ItemViewer/>
     )
 }
 
-function ItemViewer({item}) {
-    let name, price, description, contains, prepTime
+// Presentation
+function ItemViewer({ikey, item}) {
+    let quant, name, price, description, contains, prepTime
+    const [ selected, setSelected ] = useState(false)
 
     if(item != null) {
         name = item.itemName
@@ -33,6 +68,20 @@ function ItemViewer({item}) {
         description = item.itemDescription
         contains = item.itemMetaData.contains.toString()
         prepTime = item.itemPrepTime
+
+        // Quantity Selector
+        if (!selected) {
+          quant = <Button onPress={() => setSelected(true)} title={'Order'}/>
+        } else {
+          let data = {
+            ikey,
+            name,
+            price,
+            prepTime,
+            setSelected
+          }
+          quant = <Incrementer data = {data}/>
+        }
 
         return (
             <SafeAreaView style={styles.container}>
@@ -46,18 +95,58 @@ function ItemViewer({item}) {
                     <TitledBlock title="Prep Time" text={prepTime + " minutes"}/>
                 </ScrollView>
                 <View style={styles.bottomView}>
-                    <Button title={'Order'}/>
+                    {quant}
                 </View>
             </SafeAreaView>
         )
     }
 
     return (
-        <SafeAreaView style={styles.loading}>
-            <ActivityIndicator size="large"/>
-        </SafeAreaView>
+      <SafeAreaView style={styles.loading}>
+        <ActivityIndicator size="large"/>
+      </SafeAreaView>
     );
 }
+
+const Incrementer = ({ data }) => {
+  const [value, setValue] = useState(1)
+
+  const increment = () => {
+    if ( value >= 1) {
+      setValue(value + 1)
+    }
+  }
+
+  const decrement = () => {
+    if ( value > 1 ) {
+      setValue(value - 1)
+    }
+  }
+
+  let payload = {
+    key: data.ikey,
+    name: data.name,
+    price: data.price,
+    eta: data.prepTime,
+    quant: value
+  }
+
+  const confirmOrder = () => {
+    data.setSelected(false)
+    makeOrder(payload)
+  }
+
+  return (
+    <View>
+      <View style={styles.increment}>
+        <Button disabled={value == 1} onPress={() => decrement()} title="-"/>
+        <Text>{value}</Text>
+        <Button onPress={() => increment()} title="+"/>
+      </View>
+      <Button onPress={() => confirmOrder()} title="confirm"/>
+    </View>
+  )
+} 
 
 const InfoBlock = ({ name, price }) => {
 
@@ -79,7 +168,7 @@ const InfoBlock = ({ name, price }) => {
         </Text>
       </View>
     )
-  }
+}
   
 const TitledBlock = ({ title = "title", text = "text" }) => {
     return (
@@ -115,6 +204,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'monospace',
     fontWeight: 'bold',
+  },
+  increment: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: 5,
   },
   itemDescription: {
     width: '90%',
