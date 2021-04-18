@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 /* CONTAINER */
 
@@ -50,7 +50,6 @@ const InfoBlock = ({ orders }) => {
     <View style={styles.infoBlock}>
       <View style={styles.infoBlock_text}>
       <Text style={styles.textColor}>ETA: { eta } minutes</Text>
-        <Text style={styles.textColor}>ETA: { eta } minutes</Text>
         <Text style={styles.textColor}>Subtotal: ${ total.toFixed(2) }</Text>
         <Text style={styles.textColor}>Total: ${ (total * 1.07).toFixed(2) }</Text>
       </View>

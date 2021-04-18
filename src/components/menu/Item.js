@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { TouchableOpacity, Text, Image, View, StyleSheet } from 'react-native';
 import snack from '@images/snack-logo.png'
 import { useNavigation } from '@react-navigation/native'
