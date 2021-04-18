@@ -2,9 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import OrderViewCell from '@components/edit-order/OrderViewCell'
 import { useRoute } from '@react-navigation/native'
+import Item from './Item';
 import firebase from 'firebase'
 
 /* CONTAINER */
+
+export const HEIGHT = 30;
 
 export default function OrderViewerContainer() {
   const route = useRoute()
@@ -112,7 +115,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   editCell: {
-    flex: 1,
+    flex:1,
+    
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 5,
@@ -130,6 +134,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   textCell: {
+    height:HEIGHT,
     flex: 9,
     flexDirection: 'row',
     justifyContent: 'space-between',
