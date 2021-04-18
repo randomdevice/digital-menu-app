@@ -7,7 +7,7 @@ import firebase from 'firebase'
 
 /* CONTAINER */
 
-export const HEIGHT = 30;
+
 
 export default function OrderViewerContainer() {
   const route = useRoute()
@@ -57,11 +57,14 @@ function OrderViewer({ info }) {
 }
 
 const TextCell = ({ globals, item }) => {
+  
+  /*
   let name, price, quantity
   name = "Name"
   price = "Price"
   quantity = "Quantity"
 
+  
   if ( item != null) {
     if (item.name.length > 8) {
         name = item.name.substring(0,8) + '...'
@@ -72,14 +75,17 @@ const TextCell = ({ globals, item }) => {
     quantity = item.quant
   }
 
+  */
+
   return (
-    <View style={styles.editCell}>
-      <View style={styles.textCell}>
-        <Text style={styles.textSpLeft}>{ name }</Text>
-        <Text style={styles.textSpCenter}>${ price }</Text>
-        <Text style={styles.textSpRight}>{ quantity }</Text>
-      </View>
-      <DeleteButton globals={globals} item={item}/>
+    <View style={styles.editCell} >
+      <Item
+              onSwipe={() => 
+                globals.deleteItem(globals.orders, item)
+              }
+              {...{ item }}
+      />
+      
     </View>
   )
 }
@@ -116,7 +122,6 @@ const styles = StyleSheet.create({
   },
   editCell: {
     flex:1,
-    
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 5,
@@ -134,7 +139,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   textCell: {
-    height:HEIGHT,
+   // height:HEIGHT,
     flex: 9,
     flexDirection: 'row',
     justifyContent: 'space-between',
