@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
   editCell: {
     flex: 1,
     flexDirection: 'row',
-    heightMax: '5%',
     alignItems: 'center',
     marginVertical: 5,
     width: '100%'

@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
   textLabels: {
     flexDirection: 'row',
     width: '100%',
-    heightMax: '5%',
     justifyContent: 'space-between',
     paddingHorizontal: 15,
   },

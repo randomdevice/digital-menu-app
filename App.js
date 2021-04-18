@@ -98,17 +98,15 @@ export default function App() {
    * If a user is logged in, show App
    */
   return(
-    <SessionContext.Provider value={[session, setSession]}>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Landing">
-            <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
-            <Stack.Screen name="ItemViewer" component={ItemViewer} options={({route}) => ({ title: route.params.title })}/>
-            <Stack.Screen name="OrderViewer" component={OrderViewer} />
-            <Stack.Screen name="Settings" component={Settings}/>
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </SessionContext.Provider>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Landing">
+          <Stack.Screen name="RoboRamsay" component={RoboRamsay} options={{ headerShown: false }}/>
+          <Stack.Screen name="ItemViewer" component={ItemViewer} options={({route}) => ({ title: route.params.title })}/>
+          <Stack.Screen name="OrderViewer" component={OrderViewer} />
+          <Stack.Screen name="Settings" component={Settings}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   )
 }
