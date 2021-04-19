@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10, 
     alignSelf: 'center',
-    backgroundColor: '#1565C0',
+    backgroundColor: '#34568B',
     borderRadius: 10,
     shadowColor: 'black',
     shadowOpacity: 0.3,
