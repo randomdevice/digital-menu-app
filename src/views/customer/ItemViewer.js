@@ -3,6 +3,7 @@ import { ActivityIndicator, Text, Image, Button, ScrollView, View, SafeAreaView,
 import Constants from 'expo-constants';
 import { useRoute } from '@react-navigation/native';
 import firebase from 'firebase';
+import defaultPic from '@images/snack-logo.png'
 
 // Container
 export default function ItemViewerContainer() {
@@ -59,15 +60,16 @@ const makeOrder = async (payload) => {
 
 // Presentation
 function ItemViewer({ikey, item}) {
-    let quant, name, price, description, contains, type, prepTime
+    let quant = 0, name = "Item Name", price = 0.00, description = "description", contains = "contains", image = defaultPic, type="None", prepTime=20
     const [ selected, setSelected ] = useState(false)
 
     if(item != null) {
-        name = item.itemName
+        // name = item.itemName
         price = item.itemPrice 
+        image = item.itemImage
         description = item.itemDescription
         contains = item.itemMetaData.contains.join(', ')
-		type = item.itemMetaData.type.join(', ')
+		    type = item.itemMetaData.type.join(', ')
         prepTime = item.itemPrepTime
 
         // Quantity Selector
@@ -89,7 +91,7 @@ function ItemViewer({ikey, item}) {
                 <ScrollView style={styles.scrollableContent}>
                     <Image
                         style={styles.image}
-                        source={{uri: 'https://placeimg.com/640/480/nature'}}/>
+                        source={{uri: image}}/>
                     <InfoBlock name={name} price={price}/>
                     <TitledBlock title="Description" text={description}/>
                     <TitledBlock title="Contains" text={contains}/>
@@ -191,7 +193,9 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 200
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   itemInfoBlock: {
     paddingTop: '3%',
