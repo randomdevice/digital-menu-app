@@ -59,7 +59,7 @@ const makeOrder = async (payload) => {
 
 // Presentation
 function ItemViewer({ikey, item}) {
-    let quant, name, price, description, contains, type, prepTime
+    let quant, name, price, description, contains, type, prepTime, image
     const [ selected, setSelected ] = useState(false)
 
     if(item != null) {
@@ -69,6 +69,7 @@ function ItemViewer({ikey, item}) {
         contains = item.itemMetaData.contains.join(', ')
 		type = item.itemMetaData.type.join(', ')
         prepTime = item.itemPrepTime
+		image = getImage(name)
 
         // Quantity Selector
         if (!selected) {
@@ -89,7 +90,7 @@ function ItemViewer({ikey, item}) {
                 <ScrollView style={styles.scrollableContent}>
                     <Image
                         style={styles.image}
-                        source={{uri: 'https://placeimg.com/640/480/nature'}}/>
+                        source={{uri: image}}/>
                     <InfoBlock name={name} price={price}/>
                     <TitledBlock title="Description" text={description}/>
                     <TitledBlock title="Contains" text={contains}/>
@@ -108,6 +109,38 @@ function ItemViewer({ikey, item}) {
         <ActivityIndicator size="large"/>
       </SafeAreaView>
     );
+}
+
+function getImage(name){
+	// Needs more work
+	switch (name) {
+		case 'Hamburger':
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834258053075173376/Hamburger.jpg'
+
+		case 'Vanilla ice cream':
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834258056686469141/Vanilla_ice_cream.jpg'
+			
+		case 'Cheese Pizza':
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834258048381354034/Cheese_Pizza.jpg'
+			
+		case 'Salad':
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834258054269763614/Salad.jpg'
+			
+		case 'Chili Mushroom Soup':
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834258050638151710/Chili_Mushroom_Soup.jpg'
+
+		case 'Chili Mushroom Soup':
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834258050638151710/Chili_Mushroom_Soup.jpg'
+
+		case 'Spaghetti and Meatballs':
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834258055591886868/Spaghetti_and_Meatballs.jpg'
+
+		case 'Beef Tacos':
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834258046724997120/Beef_Tacos.jpg'
+
+		default:
+			return 'https://cdn.discordapp.com/attachments/577247906231222273/834260448936591370/buffet.jpg'
+	}
 }
 
 const Incrementer = ({ data }) => {
