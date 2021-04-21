@@ -65,7 +65,7 @@ function ItemViewer({ikey, item}) {
 
     if(item != null) {
         name = item.itemName
-        price = item.itemPrice 
+        price = item.itemPrice
         image = item.itemImage
         description = item.itemDescription
         contains = item.itemMetaData.contains.join(', ')
@@ -89,14 +89,14 @@ function ItemViewer({ikey, item}) {
         return (
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollableContent}>
-                <Image
-                  style={styles.image}
-                  source={{uri: image}}/>
-                <InfoBlock name={name} price={price}/>
-                <TitledBlock title="Description" text={description}/>
-                <TitledBlock title="Contains" text={contains}/>
-                <TitledBlock title="Type" text={type}/>
-                <TitledBlock title="Prep Time" text={prepTime + " minutes"}/>
+              <Image
+                style={styles.image}
+                source={{uri: image}}/>
+              <InfoBlock name={name} price={price}/>
+              <TitledBlock title="Description" text={description}/>
+              <TitledBlock title="Contains" text={contains}/>
+              <TitledBlock title="Type" text={type}/>
+              <TitledBlock title="Prep Time" text={prepTime + " minutes"}/>
             </ScrollView>
             <View style={styles.bottomView}>
               {quant}
