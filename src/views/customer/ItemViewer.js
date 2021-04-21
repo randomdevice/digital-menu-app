@@ -59,14 +59,15 @@ const makeOrder = async (payload) => {
 
 // Presentation
 function ItemViewer({ikey, item}) {
-    let quant, name, price, description, contains, prepTime
+    let quant, name, price, description, contains, type, prepTime
     const [ selected, setSelected ] = useState(false)
 
     if(item != null) {
         name = item.itemName
         price = item.itemPrice 
         description = item.itemDescription
-        contains = item.itemMetaData.contains.toString()
+        contains = item.itemMetaData.contains.join(', ')
+		type = item.itemMetaData.type.join(', ')
         prepTime = item.itemPrepTime
 
         // Quantity Selector
@@ -92,6 +93,7 @@ function ItemViewer({ikey, item}) {
                     <InfoBlock name={name} price={price}/>
                     <TitledBlock title="Description" text={description}/>
                     <TitledBlock title="Contains" text={contains}/>
+                    <TitledBlock title="Type" text={type}/>
                     <TitledBlock title="Prep Time" text={prepTime + " minutes"}/>
                 </ScrollView>
                 <View style={styles.bottomView}>
