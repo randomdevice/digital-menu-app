@@ -58,7 +58,7 @@ export default function RegisterContainer() {
 
 // Presentation
 const Register = ({ state }) => {
-  const buttons = ['Manager', 'Waiter', 'Chef']
+  const buttons = ['Manager', 'Waiter', 'Chef', 'Customer']
   const [ pressed, setPressed ] = useState(0)
 
   const updateRole = (selectedIndex) => {

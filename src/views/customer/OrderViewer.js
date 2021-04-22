@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Button, ScrollView, TouchableOpacity, StyleSheet } from 'react-native'
 import OrderViewCell from '@components/edit-order/OrderViewCell'
 import { useRoute } from '@react-navigation/native'
 import Item from './Item';
@@ -47,33 +47,21 @@ export default function OrderViewerContainer() {
 /* PRESENTATION */
 
 function OrderViewer({ info }) {
+    
+    /*
+    confirm = <Button title="CONFIRM ORDER" />
+    */
+
     return (
       <View style={styles.container}>
-        <OrderViewCell info={info}/>
+        <ScrollView>
+          <OrderViewCell info={info}/>
+        </ScrollView>
       </View>
     )
 }
 
 const TextCell = ({ globals, item }) => {
-  
-  /*
-  let name, price, quantity
-  name = "Name"
-  price = "Price"
-  quantity = "Quantity"
-
-  
-  if ( item != null) {
-    if (item.name.length > 8) {
-        name = item.name.substring(0,8) + '...'
-    } else {
-        name = item.name
-    }
-    price = item.price
-    quantity = item.quant
-  }
-
-  */
 
   return (
     <View style={styles.editCell} >
@@ -88,6 +76,7 @@ const TextCell = ({ globals, item }) => {
   )
 }
 
+/*
 const DeleteButton = ({ globals, item }) => {
   let orders = globals.orders
   return (
@@ -99,7 +88,7 @@ const DeleteButton = ({ globals, item }) => {
     </TouchableOpacity>
   )
 }
-
+*/
 
 const styles = StyleSheet.create({
   container: {
@@ -117,6 +106,14 @@ const styles = StyleSheet.create({
     fontSize: 23,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  bottomView: {
+    width: '100%',
+    alignSelf: 'center',
+    position: 'fixed',
+    bottom: 0,
+    backgroundColor: 'white',
+    padding: 10
   },
   editCell: {
     flex:1,

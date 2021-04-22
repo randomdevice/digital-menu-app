@@ -27,21 +27,25 @@ const SettingsContainer = () => {
 
 // Presentation
 const Settings = () => {
+
+  /*
+    <ListItem key={1} bottomDivider>
+      <ListItem.Content>
+        <ListItem.Title>Setting 1</ListItem.Title>
+      </ListItem.Content>
+      <ListItem.Chevron/>
+    </ListItem>
+    <ListItem key={2} bottomDivider>
+      <ListItem.Content>
+        <ListItem.Title>Setting 1</ListItem.Title>
+      </ListItem.Content>
+      <ListItem.Chevron/>
+    </ListItem>
+  */
+
   return (
     <View style={styles.container}>
       <View style={styles.topView}>
-        <ListItem key={1} bottomDivider>
-          <ListItem.Content>
-            <ListItem.Title>Setting 1</ListItem.Title>
-          </ListItem.Content>
-          <ListItem.Chevron/>
-        </ListItem>
-        <ListItem key={2} bottomDivider>
-          <ListItem.Content>
-            <ListItem.Title>Setting 1</ListItem.Title>
-          </ListItem.Content>
-          <ListItem.Chevron/>
-        </ListItem>
       </View>
       <View style={styles.bottomView}>
         <Button onPress={() => logOut()} color="red" title={'Logout'}/>
