@@ -2,7 +2,7 @@ To simply use the app, GO TO https://robo-ramsay.web.app/. No need to run an exe
 
 The application is available on a hosted website https://robo-ramsay.web.app/ (port will close on 5/30/2021), so it is unecessary to install to run the app locally from your machine, but feel free to follow the guide below to run the repo.
 
-If using the website option, be sure to follow the section [link](change-app-resolution)
+If using the website option, be sure to follow the section [Change App Resolution](#change-app-resolution)
 
 Note: anything after a colon (:) is a terminal command
 
