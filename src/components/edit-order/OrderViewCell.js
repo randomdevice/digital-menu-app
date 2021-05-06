@@ -1,10 +1,16 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
+// written by:
+// tested by: Alan Chacko
+// debugged by: Alan Chacko
+// etc.
+
 /* CONTAINER */
 
 const OrderViewCellContainer = ({ info }) => {
   return (
+    // loads an OrderViewCell component with order info.
     <OrderViewCell info={info}/>
   )
 }
@@ -12,7 +18,7 @@ const OrderViewCellContainer = ({ info }) => {
 export default OrderViewCellContainer
 
 /* PRESENTATION */
-
+// Code that displays data passed in from info.
 const OrderViewCell = ({ info }) => {
   if (info.length != 0) {
     return (
@@ -67,7 +73,7 @@ const TextLabels = () => {
   )  
 }
 
-
+// Handles styles for the UI Component
 const styles = StyleSheet.create({
   container: {
     marginVertical: '3%',
