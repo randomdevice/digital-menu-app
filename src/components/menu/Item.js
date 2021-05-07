@@ -1,6 +1,6 @@
-// written by: Raghav
-// tested by: 
-// debugged by: Alan Chacko
+// written by: Ray Chau, Esteban Salazar
+// tested by: Shrey Joshi, Akira Brown
+// debugged by: Akira Brown
 // etc.
 
 import React from 'react';
