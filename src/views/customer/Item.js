@@ -1,5 +1,5 @@
-// written by: Raghav Gopalakrishnan
-// tested by: Raghav Gopalakrishnan, Alan Chacko
+// written by: Raghav Gopalakrishnan, Ray Chau
+// tested by: Shrey Joshi, Alan Chacko
 // debugged by: Raghav Gopalakrishnan, Ray Chau
 
 import React from "react";
