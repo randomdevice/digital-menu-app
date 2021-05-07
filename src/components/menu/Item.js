@@ -1,7 +1,6 @@
 // written by: Ray Chau, Esteban Salazar
 // tested by: Shrey Joshi, Akira Brown
 // debugged by: Akira Brown
-// etc.
 
 import React from 'react';
 import { TouchableOpacity, Text, Image, View, StyleSheet } from 'react-native';
