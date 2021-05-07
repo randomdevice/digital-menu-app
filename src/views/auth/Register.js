@@ -1,9 +1,14 @@
+// written by: Alan Chacko
+// tested by: Alan Chacko
+// debugged by: Alan Chacko
+
 import React, { useState } from 'react';
 import { Text, TextInput, View, StyleSheet, Button } from 'react-native';
 import Constants from 'expo-constants';
 import { ButtonGroup } from 'react-native-elements';
 import firebase from 'firebase'
 
+// registers a new account from info passed in state object
 const onSignUp = (state) => {
   const { email, password, firstname, lastname, role, setEmessage, setError } = state;
   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -24,7 +29,8 @@ const onSignUp = (state) => {
     });
 }
 
-// Container
+/* CONTAINER */
+// Describes info required to register a user
 export default function RegisterContainer() {
   const [ email, setEmail ] = useState('')
   const [ firstname, setFirstname ] = useState('')
@@ -56,7 +62,8 @@ export default function RegisterContainer() {
   )
 }
 
-// Presentation
+/* PRESENTATION */
+
 const Register = ({ state }) => {
   const buttons = ['Manager', 'Waiter', 'Chef', 'Customer']
   const [ pressed, setPressed ] = useState(0)
