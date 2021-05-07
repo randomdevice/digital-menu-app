@@ -1,9 +1,14 @@
+// written by: Alan Chacko
+// tested by: Alan Chacko
+// debugged by: Alan Chacko
+
 import React from 'react';
 import { Text, View, Image, StyleSheet, Button } from 'react-native';
 import Constants from 'expo-constants';
 import Logo from '@images/snack-logo.png'
 import firebase from 'firebase';
 
+// creates guest account
 function guestSignIn() {
   firebase.auth().signInAnonymously()
   .then(() => {
@@ -20,16 +25,16 @@ function guestSignIn() {
   });
 }
 
-// Container
+/* CONTAINER */
+// loads navigation for the front page
 export default function LandingContainer({ navigation }) {
-
-
   return (
     <Landing navigation={navigation}/>
   );
 }
 
-// Presentation
+/* PRESENTATION */
+// allows for users to login or register, describes UI
 const Landing = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -52,6 +57,7 @@ const Landing = ({ navigation }) => {
   );
 }
 
+// defines UI styling
 const styles = StyleSheet.create({
   container: {
     flex: 1,
