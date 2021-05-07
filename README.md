@@ -33,9 +33,9 @@ Preface `--global` commands with `sudo` if running in non-permissioned shell.
 
 ## Change App Resolution:
 
-5. Open developer tools (`CTRL+SHIFT+I`) and change app resolution with the devices button at top or shortcut (`CTRL+SHIFT+M`)
+1. Open developer tools (`CTRL+SHIFT+I`) and change app resolution with the devices button at top or shortcut (`CTRL+SHIFT+M`)
 
-6. Click on "Join in as Guest" to view current screens 
+2. Click on "Join in as Guest" to view current screens 
 
 ## App structure:
 
