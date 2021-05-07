@@ -1,4 +1,4 @@
-To simply use the app, GO TO https://robo-ramsay.web.app/. No need to run an executable.
+To use the application, go to https://robo-ramsay.web.app/. No need to run an executable.
 
 The application is available on a hosted website https://robo-ramsay.web.app/ (port will close on 5/30/2021), so it is unecessary to install to run the app locally from your machine, but feel free to follow the guide below to run the repo.
 
