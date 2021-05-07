@@ -1,3 +1,7 @@
+// written by: Raghav Gopalakrishnan
+// tested by: Raghav Gopalakrishnan, Alan Chacko
+// debugged by: Raghav Gopalakrishnan, Ray Chau
+
 import React from "react";
 import { Dimensions, StyleSheet, View, Text } from "react-native";
 import Animated, {
