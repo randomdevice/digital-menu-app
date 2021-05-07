@@ -1,3 +1,7 @@
+// written by: Raghav Gopalakrishnan, Ray Chau
+// tested by: Adrian Mah, Parth Vora
+// debugged by: Parth Vora, Alan Chacko
+
 import React, {useState, useEffect} from 'react'
 import { View, Text, Button, ScrollView, TouchableOpacity, StyleSheet } from 'react-native'
 import OrderViewCell from '@components/edit-order/OrderViewCell'
@@ -6,6 +10,7 @@ import Item from './Item';
 import firebase from 'firebase'
 
 /* CONTAINER */
+// Describes component that allows user to view menu item
 
 export default function OrderViewerContainer() {
   const route = useRoute()
