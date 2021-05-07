@@ -1,7 +1,6 @@
-// written by:
-// tested by:
+// written by: Shrey Joshi, Parth Vora
+// tested by: Adrian Mah
 // debugged by: Alan Chacko
-// etc.
 
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
