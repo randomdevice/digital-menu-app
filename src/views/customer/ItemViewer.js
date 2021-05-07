@@ -1,3 +1,7 @@
+// written by: Alan Chacko and Shrey Joshi
+// tested by: Alan Chacko and Shrey Joshi
+// debugged by: Alan Chacko
+
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Text, Image, Button, ScrollView, View, SafeAreaView, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
@@ -5,7 +9,8 @@ import { useRoute } from '@react-navigation/native';
 import firebase from 'firebase';
 import defaultPic from '@images/snack-logo.png'
 
-// Container
+/* CONTAINER */
+// Live Updates UI when DB updates, allows user to view more details about a Menu Item
 export default function ItemViewerContainer() {
     const [item, setItem] = useState(null);
     const route = useRoute();
@@ -58,7 +63,7 @@ const makeOrder = async (payload) => {
   }
 }
 
-// Presentation
+/* PRESENTATION */
 function ItemViewer({ikey, item}) {
     let quant = 0, name = "Item Name", price = 0.00, description = "description", contains = "contains", image = defaultPic, type="None", prepTime=20
     const [ selected, setSelected ] = useState(false)
