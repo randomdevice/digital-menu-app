@@ -1,8 +1,15 @@
+// written by: Raghav
+// tested by: 
+// debugged by: Alan Chacko
+// etc.
+
 import React from 'react';
 import { TouchableOpacity, Text, Image, View, StyleSheet } from 'react-native';
 import snack from '@images/snack-logo.png'
 import { useNavigation } from '@react-navigation/native'
 
+/* CONTAINER */
+// Loads in an item from the menu an loads it in a separate stack page.
 const ItemContainer = ({ item }) => {
 
   let text = {
@@ -28,6 +35,7 @@ const ItemContainer = ({ item }) => {
 
 export default ItemContainer
 
+/* PRESENTATION */
 const Item = ({ text }) => {
 
   const navigation = useNavigation()
