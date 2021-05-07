@@ -1,3 +1,7 @@
+// written by: Parth Vora, Akira Brown
+// tested by: Parth Vora, Akira Brown
+// debugged by: Alan Chacko, Esteban Salazar
+
 import React from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements'
