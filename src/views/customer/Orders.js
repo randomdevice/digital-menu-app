@@ -1,8 +1,15 @@
+// written by: Kunj Desai, Suryansh Singh
+// tested by: Esteban Salazar
+// debugged by: Akira Brown
+
 import React, {useState, useEffect} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import OrderCell from '@components/orders/OrderCell'
 import firebase from 'firebase'
 import { useIsFocused } from '@react-navigation/native'
+
+/* CONTAINER */
+// Describes UI element to store retrieved orders
 
 export default function OrdersContainer() {
     const [orders, setOrders] = useState(null)
@@ -24,6 +31,8 @@ export default function OrdersContainer() {
         <Orders orders={orders}/>
     )
 }
+
+/* PRESENTATION */
 
 function Orders({ orders }) {
     if (orders != null) {
