@@ -1,10 +1,9 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-
-// written by:
+// written by: Adrian Mah, Kunj Desai
 // tested by: Alan Chacko
 // debugged by: Alan Chacko
-// etc.
+
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
 /* CONTAINER */
 
