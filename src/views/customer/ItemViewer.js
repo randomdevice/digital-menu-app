@@ -1,6 +1,6 @@
-// written by: Alan Chacko and Shrey Joshi
-// tested by: Alan Chacko and Shrey Joshi
-// debugged by: Alan Chacko
+// written by:   Adrian Mah, Shrey Joshi
+// tested by: Adrian Mah, Shrey Joshi
+// debugged by: Alan Chacko, Raghav Gopalakrishnan
 
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Text, Image, Button, ScrollView, View, SafeAreaView, StyleSheet } from 'react-native';
