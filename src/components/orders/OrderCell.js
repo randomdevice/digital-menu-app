@@ -1,8 +1,14 @@
+// written by:
+// tested by:
+// debugged by: Alan Chacko
+// etc.
+
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-// Container
 
+/* CONTAINER */
+// displays orders in the app
 const OrderCellContainer = ({ orders }) => {
   if (orders != null) {
     return (
@@ -17,8 +23,7 @@ const OrderCellContainer = ({ orders }) => {
 
 export default OrderCellContainer
 
-// Presentation
-
+/* PRESENTATION */
 const OrderCell = ({ orders }) => {
   const navigation = useNavigation()
   let items = []
