@@ -1,3 +1,7 @@
+// written by: Alan Chacko, Shrey Joshi
+// tested by: Raghav Gopalakrishnan, Suryansh Singh
+// debugged by: Raghav Gopalakrishnan, Suryansh Singh
+
 // Firebase Import
 import * as firebase from 'firebase';
 
