@@ -1,6 +1,6 @@
-// written by: Alan Chacko
-// tested by: Alan Chacko
-// debugged by: Alan Chacko
+// written by: Alan Chacko, Suryansh Singh
+// tested by: Alan Chacko, Kunj Desai
+// debugged by: Akira Brown
 
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
