@@ -1,3 +1,7 @@
+// written by: Alan Chacko
+// tested by: Alan Chacko
+// debugged by: Alan Chacko
+
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import Constants from 'expo-constants';
