@@ -1,8 +1,13 @@
+// written by: Alan Chacko
+// tested by: Alan Chacko
+// debugged by: Alan Chacko
+
 import React, { useState } from 'react';
 import { TextInput, Text , View, StyleSheet, Button } from 'react-native';
 import Constants from 'expo-constants';
 import firebase from 'firebase'
 
+// signs user in from info given in state
 const onSignIn = (state) => {
     const { email, password, setError, setEmessage } = state;
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -28,7 +33,8 @@ const onSignIn = (state) => {
         });
 }
 
-// Container
+/* CONTAINER */
+// describes info needed for when a user logs in
 export default function LoginContainer() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -51,7 +57,7 @@ export default function LoginContainer() {
     )
 }
 
-// Presentation
+/* PRESENTATION */
 const Login = ({ state }) => {
 
     let errorComponent = <Text></Text>
