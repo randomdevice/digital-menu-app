@@ -1,5 +1,8 @@
-import React from 'react'
+// written by: Alan Chacko
+// tested by: Shrey Joshi, Esteban Salazar
+// debugged by: Alan Chacko, Raghav Gopalakrishnan
 
+import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Menu from '@views/customer/Menu'
 import Orders from '@views/customer/Orders'
