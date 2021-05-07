@@ -1,3 +1,7 @@
+// written by: Esteban Salazar, Raghav Gopalakrishnan
+// tested by: Akira Brown
+// debugged by: Esteban Salazar
+
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import Animated, {
